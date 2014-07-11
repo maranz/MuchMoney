@@ -1,0 +1,8 @@
+@CHARSET "UTF-8";
+
+.ui-error {
+   box-shadow: 0 0 12 #333333;
+   -webkit-box-shadow: 0 0 12px #DF0101;
+   -moz-box-shadow: 0 0 12px #DF0101;
+}
+

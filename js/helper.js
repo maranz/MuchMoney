@@ -1,0 +1,149 @@
+var helperURL = function (urlObj) {
+	
+	 var list = new Array();
+	 
+	 if (urlObj != null){
+		 list ["selector"] = urlObj.hash.replace( /\?.*$/, "" );
+		 var urlParam = urlObj.hash.replace( /.*\?/, "" );
+		 var params = urlParam.split("&");
+		 for (var param in params) {
+			 var split =  params[param].split("=");
+		     var key = $.trim(split[0]); 
+		     var value = $.trim(split[1]);
+		     list[key] = value;
+		 };
+	 }
+	 
+     this.item = function(key){
+    	 return list[key];
+     };
+     
+};
+
+helperData = {
+	addDataKey: function(data){
+    	 data["userid"] = config.idUser();
+		 data["appid"] = config.idApp();
+     }
+};
+
+helperMessage = {
+	showAJAXException: function( xhr, status ) {
+		if (xhr.status === 0) {
+			helperMessage.showMessage('Not connect.\n Verify Network.');
+        } else if (xhr.status == 404) {
+        	helperMessage.showMessage('Requested page not found. [404]');
+        } else if (xhr.status == 500) {
+        	helperMessage.showMessage('Internal Server Error [500].');
+        } else if (status === 'parsererror') {
+        	helperMessage.showMessage('Requested JSON parse failed.');
+        } else if (status === 'timeout') {
+        	helperMessage.showMessage('Time out error.');
+        } else if (status === 'abort') {
+        	helperMessage.showMessage('Ajax request aborted.');
+        } else {
+        	helperMessage.showMessage('Uncaught Error.\n' + xhr.responseText);
+        }
+	},
+	showMessage: function( msg ){
+		alert( msg );
+	},
+	showMessageErrorJSON: function( data ){
+		if ($(data).length > 0 && data[0]["error"] != null){
+			helperMessage.showMessage(data[0]["msg"]);
+			return true;
+		}
+		return false;
+	}
+};
+
+helperString = {
+	isEmpty: function ( value ){
+		if (value === null || value === 'undefined'){
+			return true;			
+		}
+		else{
+			if (value.trim().length === 0)
+				return true;
+			else
+				return false;
+		}	
+	}	
+};
+
+helperInput = {
+	getDateNow: function () {
+		var now = new Date();   
+        var dd = ("0" + now.getDate()).slice(-2);
+        var mm = ("0" + (now.getMonth() + 1)).slice(-2);        
+        var yyyy = now.getFullYear();
+        return yyyy + '-' + mm + '-' + dd;
+	},
+	disable: function ( input , enabled){
+		if (enabled){
+			$(input).attr('disabled', 'disabled');
+	    	$(input).attr('data-clear-btn', 'true');
+		}
+		else{
+			$(input).removeAttr('disabled');	 	
+		 	$(input).removeAttr('data-clear-btn');
+		}
+	}	
+};
+
+helpAjax = {
+	call: function (data, success){
+		helperData.addDataKey(data);
+		var url = config.service();
+		$.ajax({
+		   	      //type: "GET",	      
+		   	      type: "POST",
+		   	      dataType: "json",	      
+		   	      url: url, 
+		   	      data: data,
+		   	      success: success,
+		       	  error: function ( xhr, status ) {
+		       		helperMessage.showAJAXException(  xhr, status );
+		       	  }       		
+	   	      });	
+	}	
+};
+
+helpUI = {
+	valid: function ( ui ) {
+		if (helpUI.isVoid( ui )){
+			helpUI.addError( ui );				
+			return false;
+		}
+		helpUI.removeError( ui );
+		return true;
+	},
+	addError: function ( ui ) {
+		ui.closest('div').addClass('ui-error');
+	},	
+	removeError: function ( ui ) {
+		ui.closest('div').removeClass('ui-error');
+	},
+	isVoid: function ( ui ) {
+		var v = ui.val();
+		return v == null || $.trim(v) == '' || $.trim(v) == 'null';
+	},
+	isError: function ( ui ){
+		return ui.closest('div').hasClass( "ui-error" );
+	}
+};
+
+helpData = {
+	overFlowNow : function ( val ){
+		var now = helpData.DateNow();		
+		if (val > now){
+			return true;
+		}
+		else
+			return false;
+	},
+	DateNow: function (){
+		var now = new Date();
+		return now.getFullYear() + '-' + now.getMonth() + '-' + now.getDate();
+	}
+};

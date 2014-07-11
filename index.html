@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>MuchMoney</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">		
+		
+		<link rel="stylesheet"  href="css/themes/default/jquery.mobile-1.4.2.min.css">
+		<link rel="stylesheet"  href="css/themes/default/much.money.css">
+		<script src="js/jquery.js"></script>
+		<script src="js/jquery.mobile-1.4.2.min.js"></script>
+		<script src="js/jquery.caret.js"></script>
+			
+		<script type="text/javascript" src="js/config.js"></script>
+		<script type="text/javascript" src="js/helper.js"></script>
+		<script type="text/javascript" src="js/menu.js"></script>
+		<script type="text/javascript" src="js/loadIndex.js"></script>
+		<script type="text/javascript" src="js/user.js"></script>
+		<script type="text/javascript" src="js/dreg.js"></script>
+		<script type="text/javascript" src="js/itemcost.js"></script>		
+		<script type="text/javascript" src="js/money.js"></script>
+		<script type="text/javascript" src="js/insMoney.js"></script>		
+	</head>
+	<body>
+		<div data-role="page" id="homepage">
+			<div data-role="header" data-position="fixed">
+				<h1>Much Money</h1>
+			</div><!-- /header -->
+			<div id="startmenu" data-role="content">
+				<!-- Load dynamic by usersGroups.loadList -->				
+			</div><!-- /content -->
+			<div data-role="footer" data-position="fixed">
+				<h4>Credits: Luca Marani</h4>
+			</div><!-- /footer -->
+		</div><!-- /page -->
+
+		<div data-role="page" id="insMoney" data-position="fixed">
+			<div data-role="header">
+				<!--<a href="index.html" data-rel="back">back</a>-->
+				<a href="index.html" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button" role="button">Back</a>
+				<h1>Much Money</h1>
+			</div><!-- /header -->
+			<div role="main" class="ui-content">				
+				<label for="selectUsers" class="select">Utente:</label>
+				<select name="selectUsers" id="selectUsers" class="selectUsers" data-native-menu="false" >
+					<option data-placeholder="true" value="null">Seleziona chi ha pagato...</option>						
+				</select>
+				
+    			<label for="dreg">Data di registrazione:</label>
+     			<input type="date" data-clear-btn="true" name="dreg" id="dreg" value="" />
+     			
+     			<label for="itemcost">Motivo della spesa:</label>
+	     		<input type="text" id="itemcost" placeholder="per cosa gli hai spesi?" data-clear-btn="true" maxlength="255">     			
+	     		<ul id="suggitemcost" data-role="listview" data-inset="true"></ul>
+     			
+    			<label for="money">Costo sostenuto:</label>
+	     		<input name="money" id="money" type="text" pattern="[0-9.]*" placeholder="Quanti ne hai spesi? (&#8364; 0.00)" data-clear-btn="true" />	     		
+     			
+	     		<a href="#" id="saveMoney" data-role="button" data-icon="check" data-inline="true" data-theme="b">Registra</a>     			     			  
+	     		<!--<a href="index.html" data-role="button" data-icon="delete" data-inline="true">Cancella</a>-->   			
+  			</div><!-- /Content -->			
+			<div data-role="footer" data-position="fixed">
+				<h4>Credits: Luca Marani</h4>
+			</div><!-- /footer -->
+		</div>
+	</body>
+</html>
