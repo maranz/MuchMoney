@@ -46,7 +46,8 @@ helperMessage = {
         }
 	},
 	showMessage: function( msg ){
-		alert( msg );
+		console.log ('MuchMoneyLog: ' + msg );  
+		//alert( msg );
 	},
 	showMessageErrorJSON: function( data ){
 		if ($(data).length > 0 && data[0]["error"] != null){
@@ -94,18 +95,43 @@ helperInput = {
 helpAjax = {
 	call: function (data, success){
 		helperData.addDataKey(data);
-		var url = config.service();
+		var url = config.service();		
+		var json = JSON.stringify(data);
+		/*
+		*   Chiamata CrossDomain tecnica jsonp con Jquery
+		*   purtroppo funziona solo con la GET
+		*   l'altra possibilita è la tecnica CORS
+		*   non sono riuscito a farla funzionare, da vedere se con jsonp 
+		*   la sicurezza potrebbe essere a rischio.
+		*/
+		//data: "param=" + json,
 		$.ajax({
-		   	      //type: "GET",	      
-		   	      type: "POST",
-		   	      dataType: "json",	      
-		   	      url: url, 
-		   	      data: data,
-		   	      success: success,
-		       	  error: function ( xhr, status ) {
-		       		helperMessage.showAJAXException(  xhr, status );
-		       	  }       		
-	   	      });	
+			  type: 'GET',
+			  url: url,
+			  data: 'param=' + json,	   	      
+	   	      dataType: "jsonp",
+	   	      crossDomain: true,
+	   	      jsonp:'callback',
+	   	      timeout:10000,
+	   	      success: success,
+	       	  error: function ( xhr, status ) {
+	       		helperMessage.showAJAXException(  xhr, status );
+	       	  }  
+		});		
+		/*
+		 * Chiamata ajax classica con post, Funziona con sito nello stesso dominio
+		 * del servizio. Non fattibile nello scenario di muchmoney.
+		$.ajax({  	      
+	   	      type: "POST",
+	   	      dataType: "json",	      
+	   	      url: url, 
+	   	      data: data,
+	   	      success: success,
+	       	  error: function ( xhr, status ) {
+	       		helperMessage.showAJAXException(  xhr, status );
+	       	  }       		
+   	      });
+		*/
 	}	
 };
 
