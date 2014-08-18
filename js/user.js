@@ -11,9 +11,8 @@ user = {
 			helpAjax.call(data, function ( data ) {
 				if (!helperMessage.showMessageErrorJSON ( data ))
 					var $l = $("[mz-data-list='user']"); 
-					$.each( $l , function(index, state) {
-						var id = $l[index].id;
-						user.loadSelectUI( id, data );
+					$.each( $l , function(index, state) {						
+						user.loadSelectUI( $l[index], data );
 					});
 	   	    		
 	   	 	});				
@@ -24,34 +23,33 @@ user = {
 					user.validChange( this );
 				});
 			});
-		},
-		loadSelectUI: function ( id,  data ){
-			var s = $( "#" + id );			
+		},		
+		loadSelectUI: function ( ui,  data ){						
 			$.each(data, function(index, state) {
 				var opt = "<option value='{0}'>{1}</option>";
 				var k = data[index][0];
 				var v = data[index][1];
 				opt = opt.replace('{0}', k).replace('{1}', v);
-				s.append(opt);
+				$( ui ).append(opt);
 			});
 		},
-		refreshSelectUI: function ( id, type, userid ){
+		refreshSelectUI: function ( ui, type, userid ){
 			user.type = type;
 			user.userid = userid;
 			user.fixLoad = false;
 		 	if (type === 'user'){
-		    	$( "#" + id ).val( userid );
+		    	$( ui ).val( userid );
 		    	try{
-		    		$( "#" + id ).selectmenu('disable');
-		    		$( "#" + id ).selectmenu("refresh");
+		    		$( ui ).selectmenu('disable');
+		    		$( ui ).selectmenu("refresh");
 		    	} catch( e ) { 
 		    		user.fixLoad = true;
 		    	}
 		 	}
 		 	else{		 		
 		 		try{		 			
-		    		$( "#" + id ).selectmenu("enable");
-		    		$( "#" + id ).selectmenu("refresh");
+		    		$( ui ).selectmenu("enable");
+		    		$( ui ).selectmenu("refresh");
 		    	} catch( e ) { 
 		    		user.fixLoad = true;
 		    	}
@@ -76,6 +74,6 @@ user = {
 		},
 		clear: function ( ui , type, ownerid) {
 			helpUI.clear ( ui );			
-			user.refreshSelectUI( "selectUsersout" , type, ownerid );
+			user.refreshSelectUI( ui , type, ownerid );
 		}
 };
