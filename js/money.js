@@ -1,11 +1,15 @@
 money = {		
-		load: function(){			
-			$( "#money" ).bind( "keyup", function(e, ui) {
-				money.mask(this);					
-			});	
-			
-			$('#money').on('blur', function() {
-				money.validBlur();			         
+		load: function(){
+			var $l = $("[mz-data-type='money']"); 
+			$.each( $l , function(index, state) {
+				var id = $l[index].id;
+				$( "#" + id ).bind( "keyup", function(e, ui) {
+					money.mask(this);					
+				});	
+				
+				$( "#" + id ).on('blur', function() {
+					money.validBlur();			         
+				});
 			});
 		},
 		mask: function(input) {
@@ -27,22 +31,25 @@ money = {
 				$( input ).caret( mask.pos );
 			}
 		},
-		selectedItem: function(){
-			var val = $('#money').val();
+		selectedItem: function( id ){
+			var val = $( "#" + id ).val();
 			var item = [];			
 			item['val'] = helperMaskEuro.removeFormat( val );
 			item['text'] = val;			
 			return item;			 
 		},
-		validBlur: function () {
-			var ui = $( "#money" );
+		validBlur: function ( id ) {
+			var ui = $( "#" + id );
 			if ( helpUI.isError( ui ) ){
 				return helpUI.valid( ui );
 			}
 		},
-		valid: function () {
-			var ui = $( "#money" );
+		valid: function ( id ) {
+			var ui = $( "#" + id );
 			return helpUI.valid( ui );
+		},
+		clear: function ( id ){
+			$( "#" + id ).val( "" );
 		}
 };
 

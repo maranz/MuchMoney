@@ -1,27 +1,33 @@
 dreg ={
 		load: function () {
-			$('#dreg').on('blur', function() {
-				dreg.validBlur();			         
+			var $l = $("[mz-data-type='dreg']"); 
+			$.each( $l , function(index, state) {
+				var id = $l[index].id;				
+				$("#" + id).on("blur", function() {
+					dreg.validBlur( id );			         
+				});
 			});
 		},
-		validBlur: function () {
-			var ui = $( "#dreg" );
+		validBlur: function ( id ) {
+			var ui = $( "#" + id);
 			if ( helpUI.isError( ui ) ){
 				return helpUI.valid( ui );
 			}
 		},
-		valid: function () {
-			var val = $('#dreg').val();
+		valid: function ( id ) {
+			var val = $( "#" + id ).val();
 			if (helpData.overFlowNow( val )){
-				helpUI.addError( $('#dreg') );
+				helpUI.addError( $( "#" + id ) );
 				return false;
 			}else{
-				helpUI.removeError( $('#dreg') );
+				helpUI.removeError( $("#" + id) );
 				return true;	
 			}
-			
 		},
-		selectedItem: function () {
-			return $('#dreg').val();
+		selectedItem: function ( id ) {
+			return $( "#" + id ).val();
+		},
+		setDateNow: function ( id ) {
+			$( "#" + id ).val( helperInput.getDateNow() );
 		}
 };

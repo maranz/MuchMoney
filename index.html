@@ -20,10 +20,11 @@
 		<script type="text/javascript" src="js/money.js"></script>
 		<script type="text/javascript" src="js/insMoney.js"></script>		
 	</head>
-	<body>
-		<div data-role="page" id="homepage">
+	<body>		
+		<div data-role="page" id="homepage">			
 			<div data-role="header" data-position="fixed">
 				<h1>Much Money</h1>
+				<a href="#leftpanel" data-icon="bars" data-iconpos="notext">Menu</a>        		
 			</div><!-- /header -->
 			<div id="startmenu" data-role="content">
 				<!-- Load dynamic by usersGroups.loadList -->				
@@ -31,36 +32,74 @@
 			<div data-role="footer" data-position="fixed">
 				<h4>Credits: Luca Marani</h4>
 			</div><!-- /footer -->
+			<div data-role="panel" id="leftpanel" data-theme="b" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-open">
+    			<ul data-role="listview">
+				    <li data-role="list-divider">Nuova</li>
+				    <li><a href="#">Spesa</a></li>
+				    <li><a href="#">Entrata</a></li>
+				    <li data-role="list-divider">Riepilogo</li>
+				    <li><a href="#">Movimenti</a></li>
+				    <li><a href="#">Totali</a></li>				    				    
+				</ul>
+			</div><!-- /panel -->
 		</div><!-- /page -->
 
 		<div data-role="page" id="insMoney" data-position="fixed">
 			<div data-role="header">
 				<!--<a href="index.html" data-rel="back">back</a>-->
-				<a href="index.html" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button" role="button">Back</a>
-				<h1>Much Money</h1>
+				<!--<a href="#leftpanelm" data-icon="bars" data-iconpos="notext">Menu</a>-->    
+				<a href="index.html" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button" role="button">Back</a>				
+				<h1>Much Money</h1>				
+				<div id="insMoneynav" data-role="navbar">
+			        <ul>
+			            <li><a href="#insMoneyout" class="ui-btn-active">Spese</a></li>
+			            <li><a href="#insMoneyin">Entrate</a></li>			            
+			        </ul>
+			    </div><!-- /navbar -->			    
 			</div><!-- /header -->
-			<div role="main" class="ui-content">				
-				<label for="selectUsers" class="select">Utente:</label>
-				<select name="selectUsers" id="selectUsers" class="selectUsers" data-native-menu="false" >
-					<option data-placeholder="true" value="null">Seleziona chi ha pagato...</option>						
-				</select>
-				
-    			<label for="dreg">Data di registrazione:</label>
-     			<input type="date" data-clear-btn="true" name="dreg" id="dreg" value="" />
-     			
-     			<label for="itemcost">Motivo della spesa:</label>
-	     		<input type="text" id="itemcost" placeholder="per cosa gli hai spesi?" data-clear-btn="true" maxlength="255">     			
-	     		<ul id="suggitemcost" data-role="listview" data-inset="true"></ul>
-     			
-    			<label for="money">Costo sostenuto:</label>
-	     		<input name="money" id="money" type="text" pattern="[0-9.]*" placeholder="Quanti ne hai spesi? (&#8364; 0.00)" data-clear-btn="true" />	     		
-     			
-	     		<a href="#" id="saveMoney" data-role="button" data-icon="check" data-inline="true" data-theme="b">Registra</a>     			     			  
-	     		<!--<a href="index.html" data-role="button" data-icon="delete" data-inline="true">Cancella</a>-->   			
-  			</div><!-- /Content -->			
+			<div role="main" class="ui-content" data-role="content">
+					<div id="insMoneyout">						
+						<label for="selectUsersout" class="select">Utente:</label>
+						<select name="selectUsersout" id="selectUsersout" class="selectUsers" data-native-menu="false" mz-data-list="users">
+							<option data-placeholder="true" value="null">Seleziona chi ha pagato...</option>						
+						</select>		
+										
+		    			<label for="dregout">Data di registrazione:</label>
+		     			<input type="date" data-clear-btn="true" name="dregout" id="dregout" value="" mz-data-type="dreg"/>
+		     			
+		     			<label for="itemcostout">Motivo della spesa:</label>
+			     		<input type="text" id="itemcostout" placeholder="per cosa gli hai spesi?" data-clear-btn="true" maxlength="255" mz-data-list="itemcost" mz-data-type="U">     			
+			     		<ul id="suggitemcostout" data-role="listview" data-inset="true"></ul>
+		     			
+		    			<label for="moneyout">Costo sostenuto:</label>
+			     		<input name="moneyout" id="moneyout" type="text" pattern="[0-9.]*" placeholder="Quanti ne hai spesi? (&#8364; 0.00)" data-clear-btn="true" mz-data-type="money" />	     		
+		     			
+			     		<a href="#" id="saveMoneyout" data-role="button" data-icon="check" data-inline="true" data-theme="b">Registra</a>		     		   			     			  
+			     		<!--<a href="index.html" data-role="button" data-icon="delete" data-inline="true">Cancella</a>-->	
+		     		</div>
+		     		
+		     		<div id="insMoneyin">		     			
+		     			<label for="selectUsersin" class="select">Utente:</label>
+						<select name="selectUsersin" id="selectUsersin" class="selectUsers" data-native-menu="false" mz-data-list="users">
+							<option data-placeholder="true" value="null">Seleziona chi ha guadagnato...</option>						
+						</select>
+						
+						<label for="dregin">Data di registrazione:</label>
+		     			<input type="date" data-clear-btn="true" name="dregin" id="dregin" value="" mz-data-type="dreg"/>
+		     			
+		     			<label for="itemcostin">Motivo della guadagno:</label>
+			     		<input type="text" id="itemcostin" placeholder="da dove vengono i tuo guadagni?" data-clear-btn="true" maxlength="255" mz-data-list="itemcost" mz-data-type="E">     			
+			     		<ul id="suggitemcostin" data-role="listview" data-inset="true"></ul>
+		     			
+		     			<label for="moneyin">Entrata recepita:</label>
+			     		<input name="moneyin" id="moneyin" type="text" pattern="[0-9.]*" placeholder="Quanti ne hai guadagnati? (&#8364; 0.00)" data-clear-btn="true" mz-data-type="money" />
+			     		
+			     		<a href="#" id="saveMoneyin" data-role="button" data-icon="check" data-inline="true" data-theme="b">Registra</a>
+		     		</div>			     				     			
+  			</div><!-- /Content-->
 			<div data-role="footer" data-position="fixed">
 				<h4>Credits: Luca Marani</h4>
-			</div><!-- /footer -->
+			</div><!-- /footer -->			
 		</div>
 	</body>
 </html>

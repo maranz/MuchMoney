@@ -3,22 +3,29 @@ user = {
 		type:"",
 		userid:"",
 		users:[],
-		load: function()
-		{	
+		load: function(){
 			var data = {
 				 "action":"users"    			
 	    	};			
 			helpAjax.call(data, function ( data ) {
 				if (!helperMessage.showMessageErrorJSON ( data ))
-	   	    		user.loadSelectUI( data );
-	   	 	});	
-			
-			$('#selectUsers').on('blur', function() {
-				user.validBlur();			         
+					var $l = $("[mz-data-list='users']"); 
+					$.each( $l , function(index, state) {
+						var id = $l[index].id;
+						user.loadSelectUI( id, data );
+					});
+	   	    		
+	   	 	});				
+			var $l = $("[mz-data-list='users']"); 
+			$.each( $l , function(index, state) {
+				var id = $l[index].id;
+				$( "#" + id ).on( "blur", function() {
+					user.validBlur( id );
+				});
 			});
 		},
-		loadSelectUI: function ( data ){
-			var s = $(".selectUsers");			
+		loadSelectUI: function ( id,  data ){
+			var s = $( "#" + id );			
 			$.each(data, function(index, state) {
 				var opt = "<option value='{0}'>{1}</option>";
 				var k = data[index][0];
@@ -27,45 +34,48 @@ user = {
 				s.append(opt);
 			});
 		},
-		refreshSelectUI: function ( type, userid ){
+		refreshSelectUI: function ( id, type, userid ){
 			user.type = type;
 			user.userid = userid;
 			user.fixLoad = false;
 		 	if (type === 'user'){
-		    	$( '#selectUsers' ).val( userid );
+		    	$( "#" + id ).val( userid );
 		    	try{
-		    		$( '#selectUsers' ).selectmenu('disable');
-		    		$( "#selectUsers" ).selectmenu("refresh");
+		    		$( "#" + id ).selectmenu('disable');
+		    		$( "#" + id ).selectmenu("refresh");
 		    	} catch( e ) { 
 		    		user.fixLoad = true;
 		    	}
 		 	}
 		 	else{		 		
 		 		try{		 			
-		    		$( '#selectUsers' ).selectmenu('enable');
-		    		$( "#selectUsers" ).selectmenu("refresh");
+		    		$( "#" + id ).selectmenu('enable');
+		    		$( "#" + id ).selectmenu("refresh");
 		    	} catch( e ) { 
 		    		user.fixLoad = true;
 		    	}
 		 	}
 		},
-		selectedItem: function(){
+		selectedItem: function( id ){
 			var item = [];
-			var val = $( '#selectUsers' ).val();
-			if (val != 'err'){
-				item['id'] = val;
-				item['name'] = $( '#selectUsers option:selected' ).text();
+			var val = $( "#" + id ).val();
+			if (val != "err"){
+				item["id"] = val;
+				item["name"] = $( "." + id + " option:selected" ).text();
 			}
 			return item;
 		},
-		validBlur: function () {
-			var ui = $( "#selectUsers" );
+		validBlur: function ( id ) {
+			var ui = $( "#" + id );
 			if ( helpUI.isError( ui ) ){
 				return helpUI.valid( ui );
 			}
 		},
-		valid: function () {
-			var ui = $( "#selectUsers" );
+		valid: function ( id ) {
+			var ui = $( "#" + id );
 			return helpUI.valid( ui );
+		},
+		clear: function ( id ) {
+			$( "#" + id ).val( "" );
 		}
 };

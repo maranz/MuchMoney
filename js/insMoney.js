@@ -1,15 +1,20 @@
 insMoney = {
 	urlObj: null,
-	load: function (){
-		user.load();
-		itemcost.load();
-		money.load();
-		dreg.load();
-		$( "#saveMoney" ).bind( "click", function(event, ui) {
-			insMoney.save();
+	load: function (){		
+		insMoney.loadMoneyin();
+		insMoney.loadMoneyout();
+	},
+	loadMoneyout: function (){
+		$( "#saveMoneyout" ).bind( "click", function(event, ui) {
+			insMoney.saveout();
 		});
-	},	
-	showInsMoney: function ( urlObj, options ){
+	},
+	loadMoneyin: function (){
+		$( "#saveMoneyin" ).bind( "click", function(event, ui) {
+			insMoney.savein();
+		});
+	},
+	showInsMoneyPage: function ( urlObj, options ){
 		if (options.changeHash) {
 			insMoney.urlObj = new helperURL( urlObj );	
 		 	var hu = insMoney.urlObj;	
@@ -18,15 +23,36 @@ insMoney = {
 		 	var pageSelector = hu.item( "selector" );
 		 	var ownerid = hu.item( "ownerid" );
 		 	
-		 	user.refreshSelectUI(type, ownerid);
+		 	insMoneynav.load(type); 	
+		 	insMoney.initInsMoneyout( type, ownerid );
+		 	insMoney.initInsMoneyin( type, ownerid );
 		 	
-	        $('#dreg').val(helperInput.getDateNow());
-	        
 	        var $page = $( pageSelector );
 		 	$page.page();
 		    options.dataUrl = urlObj.href;
+		    
 		 	$.mobile.changePage( $page, options );
 		}
+	},
+	initInsMoneyout: function (type, ownerid){		
+		user.clear( "selectUsersout" );
+		user.refreshSelectUI( "selectUsersout" , type, ownerid );
+		dreg.setDateNow( "dregout" );
+		itemcost.clear( "itemcostout" );
+		money.clear( "moneyout" );
+	},
+	initInsMoneyin: function (type, ownerid){		
+		user.clear( "selectUsersin" );
+		user.refreshSelectUI( "selectUsersin" , type, ownerid );
+		dreg.setDateNow( "dregin" );
+		itemcost.clear( "itemcostin" );
+		money.clear( "moneyin" );
+	},
+	showInsMoneyContent: function ( urlObj ){
+		var $a = $("div[data-role='navbar'] a[href='" + urlObj.hash + "']");		
+		var $content = $($a.attr("href"));
+	    $content.siblings().hide();
+	    $content.show();
 	},
 	setFocus: function (){
 		if (!$('#user').is(':disabled')){
@@ -36,7 +62,7 @@ insMoney = {
 			$('#dreg').focus().tap();
 		}
 	},	
-	save: function (){
+	saveout: function (){
 		if (user.valid()
 		  & dreg.valid()
 		  & itemcost.valid()
@@ -61,6 +87,9 @@ insMoney = {
 	   	 	});	
 		}	
 	},
+	savein: function (){
+		
+	},
 	getGroup: function () {
 		if (insMoney.urlObj != null
 			&& insMoney.urlObj.item( "type" ) != null
@@ -73,5 +102,26 @@ insMoney = {
 		else{
 			return '';
 		}
+	}
+};
+
+insMoneynav = {
+	hide: function (){
+		$('#insMoneynav').hide();
+	},	
+	show: function () {
+		$('#insMoneynav').show();
+	},
+	load: function (type){
+		if (type === "user") {
+			insMoneynav.show();
+		}else{
+			insMoneynav.hide();			
+		}
+		$('#insMoneynav a').removeClass('ui-btn-active');
+		$('#insMoneynav a[href="#insMoneyout"]').addClass('ui-btn-active');
+		var $content = $("#insMoneyout");
+		$content.siblings().hide();
+	    $content.show();
 	}
 };

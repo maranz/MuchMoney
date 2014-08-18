@@ -1,22 +1,34 @@
 $(document).bind( "pagebeforechange", function( e, data ) {
-	if ( typeof data.toPage === "string" ) {
-		var u = $.mobile.path.parseUrl( data.toPage ),
-			re = /^#insMoney/;
-		if ( u.hash.search(re) !== -1 ) {
-			insMoney.showInsMoney( u, data.options );
-			e.preventDefault();
+	if (typeof data.toPage !== "string")
+        return;
+	var u = $.mobile.path.parseUrl( data.toPage );
+	if ( u.hash.search(/^#insMoney/) !== -1 ) {	
+		var isinsMoneyout = ( u.hash.search(/^#insMoneyout/) !== -1 );
+		var isinsMoneyin = ( u.hash.search(/^#insMoneyin/) !== -1 );
+		if ( isinsMoneyout || isinsMoneyin ) {
+			insMoney.showInsMoneyContent( u );
 		}
-	}
+		else {
+			insMoney.showInsMoneyPage( u, data.options );
+		}
+		e.preventDefault();
+		return;
+	}		
 });
 
 $(document).on("pagebeforecreate", "#homepage",function(){
-	menu.loadStartMenu("startmenu");	
+	menu.loadStartMenu("startmenu");
+	user.load();
+	dreg.load();
+	itemcost.load();
+	money.load();
 	insMoney.load();
 }); 
 
-$(document).on("pageshow", "#insMoney",function(){
+$(document).on("pageshow", "#insMoney", function(){
 	if (user.fixLoad){
-		user.refreshSelectUI(user.type, user.userid);
+		user.refreshSelectUI( "selectUsersout", user.type, user.userid );
+		user.refreshSelectUI( "selectUsersin", user.type, user.userid );
 	}
 	insMoney.setFocus();	
 });
