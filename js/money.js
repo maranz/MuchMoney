@@ -1,4 +1,5 @@
-money = {		
+money = {	
+		id:"money",
 		load: function(){
 			var $l = $("[mz-data-type='money']"); 
 			$.each( $l , function(index, state) {
@@ -31,11 +32,11 @@ money = {
 				$( input ).caret( mask.pos );
 			}
 		},
-		selectedItem: function( id ){
-			var val = $( "#" + id ).val();
+		selectedItem: function( ui ){
+			var val = $( ui ).val();
 			var item = [];			
-			item['val'] = helperMaskEuro.removeFormat( val );
-			item['text'] = val;			
+			item["val"] = helperMaskEuro.removeFormat( val );
+			item["text"] = val;			
 			return item;			 
 		},
 		validBlur: function ( id ) {

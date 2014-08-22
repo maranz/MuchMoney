@@ -1,4 +1,7 @@
 itemcost = {
+		id:"itemcost",
+		itemsU: [],
+		itemsE: [],		
 		closeSuggestion: false,
 		load: function(){
 			var $l = $( "[mz-data-list='itemcost']" ); 
@@ -10,14 +13,19 @@ itemcost = {
 						 "action":"itemcosts",  
 						 "ctype" : ctype
 		    	};
-				helpAjax.call(data, function ( data, ctype ) {
-					if (!helperMessage.showMessageErrorJSON ( data )){							
+				helpAjax.call( data, function ( data, status ) {
+					if (!helperMessage.showMessageErrorJSON ( data )){
+						if ( ctype == "U" ){
+							itemcost.itemsU = data;
+						}
+						else if ( ctype == "E" ) {
+							itemcost.itemsE = data;
+						}
 						itemcost.loadSuggestion( "sugg" + id, data );
 						$( "#" + id ).on("input", function(e) {
 							 var text = $.trim($(this).val());
 							 itemcost.filter( id, text );
 						});
-						
 						$( "#"  + id ).keyup(function() {
 							if (itemcost.closeSuggestion){
 								itemcost.closeSuggestion = false;
@@ -72,21 +80,29 @@ itemcost = {
 			var suggestion = $( "#" + id );			
 			suggestion.html( html );
 		},
-		selectedItem: function ( id ){
+		selectedItem: function ( ui ){
 			/*
 			 * se serve implementare ID della voce, l'aggancio al metodo 
 			 * è già predisposto
 			*/ 			
-			var v = $( "#" + id ).val();
+			var v = $( ui ).val();
+			var type = $( ui ).attr( "mz-data-type" );
 			var item = [];
-			item['id'] = itemcost.getId( v );
+			item['id'] = itemcost.getId( v, type );
 			item['name'] = v;
 			return item;
 		},
-		getId: function ( text ){
+		getId: function ( text, type ){
 			var k = '';
-			$.each(itemcost.suggestion, function( key, value ) { 
-				if($.trim(value[1]).toLowerCase() === $.trim(text).toLowerCase()) {
+			var l = [];
+			if ( type == "U" ){
+				l = itemcost.itemsU;
+			}
+			else if ( type == "E" ){ 
+				l = itemcost.itemsE;
+			}
+			$.each( l, function( key, value ) { 
+				if( $.trim(value[1]).toLowerCase() === $.trim(text).toLowerCase() ) {
 			        k = value[0];
 			        return false;
 			    }

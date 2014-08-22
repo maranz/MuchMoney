@@ -22,7 +22,7 @@ $(document).on("pagebeforecreate", "#homepage",function(){
 	dreg.load();
 	itemcost.load();
 	money.load();
-	insMoney.load();
+	action.load();
 }); 
 
 $(document).on("pageshow", "#insMoney", function(){

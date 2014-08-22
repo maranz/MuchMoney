@@ -1,4 +1,5 @@
-user = {		
+user = {
+		id:"user",
 		fixLoad:false,
 		type:"",
 		userid:"",
@@ -9,7 +10,7 @@ user = {
 	    	};			
 			helpAjax.call(data, function ( data ) {
 				if (!helperMessage.showMessageErrorJSON ( data ))
-					var $l = $("[mz-data-list='users']"); 
+					var $l = $("[mz-data-list='user']"); 
 					$.each( $l , function(index, state) {
 						var id = $l[index].id;
 						user.loadSelectUI( id, data );
@@ -49,19 +50,19 @@ user = {
 		 	}
 		 	else{		 		
 		 		try{		 			
-		    		$( "#" + id ).selectmenu('enable');
+		    		$( "#" + id ).selectmenu("enable");
 		    		$( "#" + id ).selectmenu("refresh");
 		    	} catch( e ) { 
 		    		user.fixLoad = true;
 		    	}
 		 	}
 		},
-		selectedItem: function( id ){
+		selectedItem: function( ui ){
 			var item = [];
-			var val = $( "#" + id ).val();
+			var val = $( ui ).val();
 			if (val != "err"){
 				item["id"] = val;
-				item["name"] = $( "." + id + " option:selected" ).text();
+				item["name"] = $( ui ).children(":selected").text();
 			}
 			return item;
 		},

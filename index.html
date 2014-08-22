@@ -19,6 +19,7 @@
 		<script type="text/javascript" src="js/itemcost.js"></script>		
 		<script type="text/javascript" src="js/money.js"></script>
 		<script type="text/javascript" src="js/insMoney.js"></script>		
+ 		<script type="text/javascript" src="js/action.js"></script>
 	</head>
 	<body>		
 		<div data-role="page" id="homepage">			
@@ -60,41 +61,41 @@
 			<div role="main" class="ui-content" data-role="content">
 					<div id="insMoneyout">						
 						<label for="selectUsersout" class="select">Utente:</label>
-						<select name="selectUsersout" id="selectUsersout" class="selectUsers" data-native-menu="false" mz-data-list="users">
+						<select name="selectUsersout" id="selectUsersout" class="selectUsers" data-native-menu="false" mz-data-list="user" mz-data-para="useridowner">
 							<option data-placeholder="true" value="null">Seleziona chi ha pagato...</option>						
 						</select>		
 										
 		    			<label for="dregout">Data di registrazione:</label>
-		     			<input type="date" data-clear-btn="true" name="dregout" id="dregout" value="" mz-data-type="dreg"/>
+		     			<input type="date" data-clear-btn="true" name="dregout" id="dregout" value="" mz-data-type="dreg" mz-data-para="vdate" />
 		     			
 		     			<label for="itemcostout">Motivo della spesa:</label>
-			     		<input type="text" id="itemcostout" placeholder="per cosa gli hai spesi?" data-clear-btn="true" maxlength="255" mz-data-list="itemcost" mz-data-type="U">     			
+			     		<input type="text" id="itemcostout" placeholder="per cosa gli hai spesi?" data-clear-btn="true" maxlength="255" mz-data-list="itemcost" mz-data-type="U" mz-data-para="itemcostname">     			
 			     		<ul id="suggitemcostout" data-role="listview" data-inset="true"></ul>
 		     			
 		    			<label for="moneyout">Costo sostenuto:</label>
-			     		<input name="moneyout" id="moneyout" type="text" pattern="[0-9.]*" placeholder="Quanti ne hai spesi? (&#8364; 0.00)" data-clear-btn="true" mz-data-type="money" />	     		
+			     		<input name="moneyout" id="moneyout" type="text" pattern="[0-9.]*" placeholder="Quanti ne hai spesi? (&#8364; 0.00)" data-clear-btn="true" mz-data-type="money" mz-data-para="money" />	     		
 		     			
-			     		<a href="#" id="saveMoneyout" data-role="button" data-icon="check" data-inline="true" data-theme="b">Registra</a>		     		   			     			  
+			     		<a href="#" id="saveMoneyout" data-role="button" data-icon="check" data-inline="true" data-theme="b" mz-data-action="insertmoney">Registra</a>		     		   			     			  
 			     		<!--<a href="index.html" data-role="button" data-icon="delete" data-inline="true">Cancella</a>-->	
 		     		</div>
 		     		
 		     		<div id="insMoneyin">		     			
 		     			<label for="selectUsersin" class="select">Utente:</label>
-						<select name="selectUsersin" id="selectUsersin" class="selectUsers" data-native-menu="false" mz-data-list="users">
+						<select name="selectUsersin" id="selectUsersin" class="selectUsers" data-native-menu="false" mz-data-list="user" mz-data-para="useridowner">
 							<option data-placeholder="true" value="null">Seleziona chi ha guadagnato...</option>						
 						</select>
 						
 						<label for="dregin">Data di registrazione:</label>
-		     			<input type="date" data-clear-btn="true" name="dregin" id="dregin" value="" mz-data-type="dreg"/>
+		     			<input type="date" data-clear-btn="true" name="dregin" id="dregin" value="" mz-data-type="dreg" mz-data-para="vdate"/>
 		     			
 		     			<label for="itemcostin">Motivo della guadagno:</label>
-			     		<input type="text" id="itemcostin" placeholder="da dove vengono i tuo guadagni?" data-clear-btn="true" maxlength="255" mz-data-list="itemcost" mz-data-type="E">     			
+			     		<input type="text" id="itemcostin" placeholder="da dove vengono i tuo guadagni?" data-clear-btn="true" maxlength="255" mz-data-list="itemcost" mz-data-type="E" mz-data-para="itemcostname">     			
 			     		<ul id="suggitemcostin" data-role="listview" data-inset="true"></ul>
 		     			
 		     			<label for="moneyin">Entrata recepita:</label>
-			     		<input name="moneyin" id="moneyin" type="text" pattern="[0-9.]*" placeholder="Quanti ne hai guadagnati? (&#8364; 0.00)" data-clear-btn="true" mz-data-type="money" />
+			     		<input name="moneyin" id="moneyin" type="text" pattern="[0-9.]*" placeholder="Quanti ne hai guadagnati? (&#8364; 0.00)" data-clear-btn="true" mz-data-type="money" mz-data-para="money" />
 			     		
-			     		<a href="#" id="saveMoneyin" data-role="button" data-icon="check" data-inline="true" data-theme="b">Registra</a>
+			     		<a href="#" id="saveMoneyin" data-role="button" data-icon="check" data-inline="true" data-theme="b" mz-data-action="insertmoney">Registra</a>
 		     		</div>			     				     			
   			</div><!-- /Content-->
 			<div data-role="footer" data-position="fixed">

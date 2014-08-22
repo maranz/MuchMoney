@@ -1,4 +1,5 @@
 dreg ={
+		id:"dreg",
 		load: function () {
 			var $l = $("[mz-data-type='dreg']"); 
 			$.each( $l , function(index, state) {
@@ -24,8 +25,8 @@ dreg ={
 				return true;	
 			}
 		},
-		selectedItem: function ( id ) {
-			return $( "#" + id ).val();
+		selectedItem: function ( ui ) {
+			return $( ui ).val();
 		},
 		setDateNow: function ( id ) {
 			$( "#" + id ).val( helperInput.getDateNow() );

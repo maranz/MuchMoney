@@ -1,19 +1,5 @@
 insMoney = {
-	urlObj: null,
-	load: function (){		
-		insMoney.loadMoneyin();
-		insMoney.loadMoneyout();
-	},
-	loadMoneyout: function (){
-		$( "#saveMoneyout" ).bind( "click", function(event, ui) {
-			insMoney.saveout();
-		});
-	},
-	loadMoneyin: function (){
-		$( "#saveMoneyin" ).bind( "click", function(event, ui) {
-			insMoney.savein();
-		});
-	},
+	urlObj: null,	
 	showInsMoneyPage: function ( urlObj, options ){
 		if (options.changeHash) {
 			insMoney.urlObj = new helperURL( urlObj );	
@@ -75,8 +61,8 @@ insMoney = {
 			var data = {
 				"action": "insertmoneyout",
 				"useridowner": usr["id"],
-				"itemcostname": itmcst["name"],
 				"vdate": d,
+				"itemcostname": itmcst["name"],
 				"money": mny["val"],
 				"groupid": grp
 		    };
