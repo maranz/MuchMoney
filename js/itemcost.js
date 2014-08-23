@@ -118,7 +118,7 @@ itemcost = {
 		valid: function ( ui ) {			
 			return helpUI.valid( ui );
 		},
-		clear: function ( id ){
-			$( "#" + id ).val( "" );
+		clear: function ( ui ){
+			helpUI.clear ( ui );
 		}
 };

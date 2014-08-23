@@ -18,7 +18,7 @@ dreg ={
 			var valid = helpUI.valid( ui );
 			if ( valid ){
 				var val = $( ui ).val();
-				if (val == "" || helpDate.overFlow( val )){
+				if (val == "" || helperDate.overFlow( val )){
 					helpUI.addError( ui );
 					return false;
 				}else{
@@ -30,7 +30,11 @@ dreg ={
 		selectedItem: function ( ui ) {
 			return $( ui ).val();
 		},
-		setDateNow: function ( id ) {
-			$( "#" + id ).val( helperInput.getDateNow() );
+		clear: function ( ui ) {
+			helpUI.clear ( ui );
+			var def =  $( ui ).attr( "mz-data-default" );
+			if (def == "now"){
+				$( ui ).val( helperDate.getNowToString() );
+			}
 		}
 };

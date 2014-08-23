@@ -1,7 +1,5 @@
 var helperURL = function (urlObj) {
-	
 	 var list = new Array();
-	 
 	 if (urlObj != null){
 		 list ["selector"] = urlObj.hash.replace( /\?.*$/, "" );
 		 var urlParam = urlObj.hash.replace( /.*\?/, "" );
@@ -13,11 +11,9 @@ var helperURL = function (urlObj) {
 		     list[key] = value;
 		 };
 	 }
-	 
      this.item = function(key){
     	 return list[key];
      };
-     
 };
 
 helperData = {
@@ -25,6 +21,19 @@ helperData = {
     	 data["userid"] = config.idUser();
 		 data["appid"] = config.idApp();
      }
+};
+
+helperDate = {
+	overFlow : function ( val ){		
+		return ( new Date( val ) > new Date() );
+	},
+	getNowToString: function () {
+		var now = new Date();   
+        var dd = ("0" + now.getDate()).slice(-2);
+        var mm = ("0" + (now.getMonth() + 1)).slice(-2);        
+        var yyyy = now.getFullYear();
+        return yyyy + '-' + mm + '-' + dd;
+	}
 };
 
 helperMessage = {
@@ -69,26 +78,6 @@ helperString = {
 			else
 				return false;
 		}	
-	}	
-};
-
-helperInput = {
-	getDateNow: function () {
-		var now = new Date();   
-        var dd = ("0" + now.getDate()).slice(-2);
-        var mm = ("0" + (now.getMonth() + 1)).slice(-2);        
-        var yyyy = now.getFullYear();
-        return yyyy + '-' + mm + '-' + dd;
-	},
-	disable: function ( input , enabled){
-		if (enabled){
-			$(input).attr('disabled', 'disabled');
-	    	$(input).attr('data-clear-btn', 'true');
-		}
-		else{
-			$(input).removeAttr('disabled');	 	
-		 	$(input).removeAttr('data-clear-btn');
-		}
 	}	
 };
 
@@ -157,11 +146,9 @@ helpUI = {
 	},
 	isError: function ( ui ){
 		return $( ui ).closest('div').hasClass( "ui-error" );
-	}
-};
-
-helpDate = {
-	overFlow : function ( val ){		
-		return ( new Date( val ) > new Date() );
+	},
+	clear: function ( ui ){
+		$( ui ).val( "" );
+		helpUI.removeError( ui );
 	}
 };

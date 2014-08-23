@@ -74,7 +74,8 @@ user = {
 		valid: function ( ui ) {			
 			return helpUI.valid( ui );
 		},
-		clear: function ( id ) {
-			$( "#" + id ).val( "" );
+		clear: function ( ui , type, ownerid) {
+			helpUI.clear ( ui );			
+			user.refreshSelectUI( "selectUsersout" , type, ownerid );
 		}
 };
