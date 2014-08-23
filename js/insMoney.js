@@ -1,10 +1,16 @@
-
+$(document).on("pageshow", "#insMoney", function(){
+	if (user.fixLoad){
+		user.refreshSelectUI( $( "#selectUsersout" ) );
+		user.refreshSelectUI( $( "#selectUsersin" ) );
+	}
+	insMoney.setFocus();	
+});
 
 insMoney = {	
-	showInsMoneyPage: function ( urlObj, options ){
-		if (options.changeHash) {
-			insMoney.urlObj = new helperURL( urlObj );	
-		 	var hu = insMoney.urlObj;	
+	pagebeforechange:function ( u, data ){
+		if ( u.hash.search(/^#insMoney/) !== -1 ) {
+			insMoney.urlObj = new helperURL( u );
+			var hu = insMoney.urlObj;	
 		 	var type = hu.item( "type" );
 		 	var name =  hu.item( "name" );
 		 	var pageSelector = hu.item( "selector" );
@@ -12,6 +18,19 @@ insMoney = {
 		 	var $page = $( pageSelector );
 		 	$( $page ).data( "type",  type);
 	        $( $page ).data( "ownerid",  ownerid);
+			var isinsMoneyout = ( u.hash.search(/^#insMoneyout/) !== -1 );
+			var isinsMoneyin = ( u.hash.search(/^#insMoneyin/) !== -1 );
+			if ( isinsMoneyout || isinsMoneyin ) {
+				insMoney.showInsMoneyContent( u );
+			}
+			else {
+				insMoney.showInsMoneyPage( u, data.options, type,  $page );
+			}			
+			return true;
+		}
+	},
+	showInsMoneyPage: function ( urlObj, options, type, $page ){
+		if (options.changeHash) {
 		 	insMoneynav.load(type); 
 		 	action.clear( $( "#insMoney" ) );
 		 	$page.page();
