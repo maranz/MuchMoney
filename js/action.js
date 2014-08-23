@@ -21,7 +21,7 @@ action = {
 			}
 			var valid = true;
 			$.each( $l , function(index, state) {
-				var v = action.handleClickItem( $l[index] , data);
+				var v = action.loadDataByUI( $l[index] , data);
 				if ( valid ) {
 					valid = v;
 				}
@@ -36,46 +36,72 @@ action = {
 		   	 	*/	
 			}
 		},
-		handleClickItem: function ( item, data){
-			var list = $( item ).attr( "mz-data-list" );
-			var para = $( item ).attr( "mz-data-para" );			
+		loadDataByUI: function ( ui, data){
+			var para = $( ui ).attr( "mz-data-para" );
 			var valid = true;
+			var list = $( ui ).attr( "mz-data-list" );
 			switch( list ){
 		      case user.id:
-	    		  valid = user.valid( item );
+	    		  valid = user.valid( ui );
 		    	  if ( valid ){
-		    		  var usr = user.selectedItem( item );
+		    		  var usr = user.selectedItem( ui );
 			    	  data[ para ] = usr[ "id" ];  
 		    	  }
 		    	  break;
 		      case itemcost.id:
-		    	  valid = itemcost.valid( item );
+		    	  valid = itemcost.valid( ui );
 		    	  if ( valid ){
-			    	  var itmcst = itemcost.selectedItem( item );
+			    	  var itmcst = itemcost.selectedItem( ui );
 			    	  data[ para ] = itmcst[ "name" ];
 		    	  }
 		    	  break;
 		    }
-			var type = $( item ).attr( "mz-data-type" ); 
+			var type = $( ui ).attr( "mz-data-type" ); 
 			switch(type){
 		      case dreg.id:
-		    	  valid = dreg.valid( item );
+		    	  valid = dreg.valid( ui );
 		    	  if ( valid ){
-			    	  var d = dreg.selectedItem( item );
+			    	  var d = dreg.selectedItem( ui );
 			    	  data[ para ] = d;
 		    	  }
 		    	  break;
 		      case money.id:
-		    	  valid = money.valid( item );
+		    	  valid = money.valid( ui );
 		    	  if ( valid ){
-			    	  var mny = money.selectedItem( item );
+			    	  var mny = money.selectedItem( ui );
 			    	  data[ para ] = mny["val"];
 		    	  }
 		    	  break;
 		    }
 			return valid;
 		},
-		clear: function() {
-			
+		clear: function( ui ) {
+			var $l = $( ui ).find(":input");
+			$.each( $l , function(index, state) {
+				action.clearUI( $l[index] );
+			});
+		},
+		clearUI: function ( ui ){
+			var $page = $( ui ).closest( "[data-role='page']" );
+			var type = $( $page ).data( "type" );
+			var ownerid = $( $page ).data( "ownerid" );
+			var list = $( ui ).attr( "mz-data-list" );
+			switch( list ){
+		      case user.id:
+		    	  user.clear( ui, type, ownerid );
+		    	  break;
+		      case itemcost.id:
+		    	  itemcost.clear( ui );
+		    	  break;
+		    }
+			var type = $( ui ).attr( "mz-data-type" ); 
+			switch(type){
+		      case dreg.id:
+		    	  dreg.clear( ui );
+		    	  break;
+		      case money.id:
+		    	  money.clear( ui );
+		    	  break;
+		    }
 		}
 };
