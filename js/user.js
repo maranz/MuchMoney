@@ -17,11 +17,11 @@ user = {
 					});
 	   	    		
 	   	 	});				
-			var $l = $("[mz-data-list='users']"); 
+			var $l = $("[mz-data-list='user']"); 
 			$.each( $l , function(index, state) {
-				var id = $l[index].id;
-				$( "#" + id ).on( "blur", function() {
-					user.validBlur( id );
+				var $ui = $l[index];				
+				$( $ui ).bind( "change", function(event, ui) {
+					user.validChange( this );
 				});
 			});
 		},
@@ -66,14 +66,12 @@ user = {
 			}
 			return item;
 		},
-		validBlur: function ( id ) {
-			var ui = $( "#" + id );
+		validChange: function ( ui ) {			
 			if ( helpUI.isError( ui ) ){
-				return helpUI.valid( ui );
+				return user.valid( ui );
 			}
 		},
-		valid: function ( id ) {
-			var ui = $( "#" + id );
+		valid: function ( ui ) {			
 			return helpUI.valid( ui );
 		},
 		clear: function ( id ) {

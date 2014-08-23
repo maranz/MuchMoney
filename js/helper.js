@@ -137,7 +137,8 @@ helpAjax = {
 
 helpUI = {
 	valid: function ( ui ) {
-		if (helpUI.isVoid( ui )){
+		var required = ( $( ui ).attr( "mz-data-required" ) == "true");
+		if (required && helpUI.isVoid( ui )){
 			helpUI.addError( ui );				
 			return false;
 		}
@@ -145,31 +146,22 @@ helpUI = {
 		return true;
 	},
 	addError: function ( ui ) {
-		ui.closest('div').addClass('ui-error');
+		$( ui ).closest('div').addClass('ui-error');
 	},	
 	removeError: function ( ui ) {
-		ui.closest('div').removeClass('ui-error');
+		$( ui ).closest('div').removeClass('ui-error');
 	},
 	isVoid: function ( ui ) {
-		var v = ui.val();
+		var v = $( ui ).val();
 		return v == null || $.trim(v) == '' || $.trim(v) == 'null';
 	},
 	isError: function ( ui ){
-		return ui.closest('div').hasClass( "ui-error" );
+		return $( ui ).closest('div').hasClass( "ui-error" );
 	}
 };
 
-helpData = {
-	overFlowNow : function ( val ){
-		var now = helpData.DateNow();		
-		if (val > now){
-			return true;
-		}
-		else
-			return false;
-	},
-	DateNow: function (){
-		var now = new Date();
-		return now.getFullYear() + '-' + now.getMonth() + '-' + now.getDate();
+helpDate = {
+	overFlow : function ( val ){		
+		return ( new Date( val ) > new Date() );
 	}
 };

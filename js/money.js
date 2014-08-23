@@ -3,13 +3,12 @@ money = {
 		load: function(){
 			var $l = $("[mz-data-type='money']"); 
 			$.each( $l , function(index, state) {
-				var id = $l[index].id;
-				$( "#" + id ).bind( "keyup", function(e, ui) {
-					money.mask(this);					
+				var $ui = $l[index];
+				$( $ui ).bind( "keyup", function(e, ui) {
+					money.mask( this );					
 				});	
-				
-				$( "#" + id ).on('blur', function() {
-					money.validBlur();			         
+				$( $ui ).bind('blur', function() {
+					money.validBlur( this );			         
 				});
 			});
 		},
@@ -39,14 +38,12 @@ money = {
 			item["text"] = val;			
 			return item;			 
 		},
-		validBlur: function ( id ) {
-			var ui = $( "#" + id );
+		validBlur: function ( ui ) {			
 			if ( helpUI.isError( ui ) ){
-				return helpUI.valid( ui );
+				return money.valid( ui );
 			}
 		},
-		valid: function ( id ) {
-			var ui = $( "#" + id );
+		valid: function ( ui ) {			
 			return helpUI.valid( ui );
 		},
 		clear: function ( id ){

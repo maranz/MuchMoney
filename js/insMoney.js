@@ -1,5 +1,5 @@
 insMoney = {
-	urlObj: null,	
+	//urlObj: null,	
 	showInsMoneyPage: function ( urlObj, options ){
 		if (options.changeHash) {
 			insMoney.urlObj = new helperURL( urlObj );	
@@ -14,6 +14,7 @@ insMoney = {
 		 	insMoney.initInsMoneyin( type, ownerid );
 		 	
 	        var $page = $( pageSelector );
+	        $( $page ).data( "ownerid",  ownerid); 
 		 	$page.page();
 		    options.dataUrl = urlObj.href;
 		    
@@ -47,8 +48,9 @@ insMoney = {
 		else{
 			$('#dreg').focus().tap();
 		}
-	},	
-	saveout: function (){
+	}
+	/*
+	,saveout: function (){
 		if (user.valid()
 		  & dreg.valid()
 		  & itemcost.valid()
@@ -73,9 +75,6 @@ insMoney = {
 	   	 	});	
 		}	
 	},
-	savein: function (){
-		
-	},
 	getGroup: function () {
 		if (insMoney.urlObj != null
 			&& insMoney.urlObj.item( "type" ) != null
@@ -89,6 +88,7 @@ insMoney = {
 			return '';
 		}
 	}
+	*/
 };
 
 insMoneynav = {

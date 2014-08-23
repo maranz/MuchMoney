@@ -22,26 +22,27 @@ itemcost = {
 							itemcost.itemsE = data;
 						}
 						itemcost.loadSuggestion( "sugg" + id, data );
-						$( "#" + id ).on("input", function(e) {
-							 var text = $.trim($(this).val());
+						$( $item ).bind("input", function(e) {
+							 var text = $.trim( $( this ).val() );
 							 itemcost.filter( id, text );
 						});
-						$( "#"  + id ).keyup(function() {
+						$( $item ).keyup(function() {
 							if (itemcost.closeSuggestion){
 								itemcost.closeSuggestion = false;
 								itemcost.filter( id, "" );	
 							}
 						});						
-						$( "#sugg" + id ).on('tap', 'a', function(){
+						$( "#sugg" + id ).on("tap", "a", function(){
 							itemcost.closeSuggestion = true;
-							$( "#" + id ).val($(this).text());
-							$( "#" + id ).trigger( 'keyup' );				
+							$( "#" + id ).val( $( this ).text() );							
+							$( "#" + id ).trigger( "keyup" );				
+						});
+						$( $item ).bind("blur", function() {
+							itemcost.validBlur( this );			         
 						});
 					}	
 		   	 	});	
-				$("#" + id).on('blur', function() {
-					itemcost.validBlur( id );			         
-				});
+				
 			});
 		},
 		filter: function ( id, text ){
@@ -109,14 +110,12 @@ itemcost = {
 			});			
 			return k;
 		},
-		validBlur: function ( id ) {
-			var ui = $( "#" + id );
+		validBlur: function ( ui ) {			
 			if ( helpUI.isError( ui ) ){
-				return helpUI.valid( ui );
+				return itemcost.valid( ui );
 			}
 		},
-		valid: function ( id ) {
-			var ui = $( "#" + id );
+		valid: function ( ui ) {			
 			return helpUI.valid( ui );
 		},
 		clear: function ( id ){
