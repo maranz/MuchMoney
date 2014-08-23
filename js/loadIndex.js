@@ -32,6 +32,3 @@ $(document).on("pageshow", "#insMoney", function(){
 	}
 	insMoney.setFocus();	
 });
-
-
-

@@ -81,14 +81,11 @@ action = {
 				action.clearUI( $l[index] );
 			});
 		},
-		clearUI: function ( ui ){
-			var $page = $( ui ).closest( "[data-role='page']" );
-			var type = $( $page ).data( "type" );
-			var ownerid = $( $page ).data( "ownerid" );
+		clearUI: function ( ui ){			
 			var list = $( ui ).attr( "mz-data-list" );
 			switch( list ){
 		      case user.id:
-		    	  user.clear( ui, type, ownerid );
+		    	  user.clear( ui );
 		    	  break;
 		      case itemcost.id:
 		    	  itemcost.clear( ui );

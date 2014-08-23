@@ -1,3 +1,5 @@
+
+
 insMoney = {	
 	showInsMoneyPage: function ( urlObj, options ){
 		if (options.changeHash) {

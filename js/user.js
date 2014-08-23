@@ -1,8 +1,6 @@
 user = {
 		id:"user",
 		fixLoad:false,
-		type:"",
-		userid:"",
 		users:[],
 		load: function(){
 			var data = {
@@ -33,12 +31,13 @@ user = {
 				$( ui ).append(opt);
 			});
 		},
-		refreshSelectUI: function ( ui, type, userid ){
-			user.type = type;
-			user.userid = userid;
+		refreshSelectUI: function ( ui ){			
+			var $page = $( ui ).closest( "[data-role='page']" );
+			var type = $( $page ).data( "type" );
+			var ownerid = $( $page ).data( "ownerid" );
 			user.fixLoad = false;
 		 	if (type === 'user'){
-		    	$( ui ).val( userid );
+		    	$( ui ).val( ownerid );
 		    	try{
 		    		$( ui ).selectmenu('disable');
 		    		$( ui ).selectmenu("refresh");
