@@ -13,7 +13,7 @@ $(document).on("pagebeforecreate", "#homepage",function(){
 	uiUser.load();
 	dreg.load();
 	itemcost.load();
-	money.load();
+	uiMoney.load();
 	action.load();
 }); 
 

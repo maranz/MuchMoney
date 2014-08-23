@@ -1,14 +1,14 @@
-money = {	
+uiMoney = {	
 		id:"money",
 		load: function(){
 			var $l = $("[mz-data-type='money']"); 
 			$.each( $l , function(index, state) {
 				var $ui = $l[index];
 				$( $ui ).bind( "keyup", function(e, ui) {
-					money.mask( this );					
+					uiMoney.mask( this );					
 				});	
 				$( $ui ).bind('blur', function() {
-					money.validBlur( this );			         
+					uiMoney.validBlur( this );			         
 				});
 			});
 		},
@@ -40,7 +40,7 @@ money = {
 		},
 		validBlur: function ( ui ) {			
 			if ( helpUI.isError( ui ) ){
-				return money.valid( ui );
+				return uiMoney.valid( ui );
 			}
 		},
 		valid: function ( ui ) {			

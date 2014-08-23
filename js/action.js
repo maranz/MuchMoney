@@ -65,10 +65,10 @@ action = {
 			    	  data[ para ] = d;
 		    	  }
 		    	  break;
-		      case money.id:
-		    	  valid = money.valid( ui );
+		      case uiMoney.id:
+		    	  valid = uiMoney.valid( ui );
 		    	  if ( valid ){
-			    	  var mny = money.selectedItem( ui );
+			    	  var mny = uiMoney.selectedItem( ui );
 			    	  data[ para ] = mny["val"];
 		    	  }
 		    	  break;
@@ -96,8 +96,8 @@ action = {
 		      case dreg.id:
 		    	  dreg.clear( ui );
 		    	  break;
-		      case money.id:
-		    	  money.clear( ui );
+		      case uiMoney.id:
+		    	  uiMoney.clear( ui );
 		    	  break;
 		    }
 		}
