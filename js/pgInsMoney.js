@@ -18,6 +18,7 @@ pgInsMoney = {
 		 	var $page = $( pageSelector );
 		 	$( $page ).data( "type",  type);
 	        $( $page ).data( "ownerid",  ownerid);
+	        action.clear( $( "#insMoney" ) );
 			var isinsMoneyout = ( u.hash.search(/^#insMoneyout/) !== -1 );
 			var isinsMoneyin = ( u.hash.search(/^#insMoneyin/) !== -1 );
 			if ( isinsMoneyout || isinsMoneyin ) {
@@ -31,8 +32,7 @@ pgInsMoney = {
 	},
 	showInsMoneyPage: function ( urlObj, options, type, $page ){
 		if (options.changeHash) {
-		 	insMoneynav.load(type); 
-		 	action.clear( $( "#insMoney" ) );
+		 	insMoneynav.load(type);
 		 	$page.page();
 		    options.dataUrl = urlObj.href;
 		 	$.mobile.changePage( $page, options );
