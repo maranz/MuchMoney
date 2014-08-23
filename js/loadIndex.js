@@ -2,7 +2,7 @@ $(document).bind( "pagebeforechange", function( e, data ) {
 	if (typeof data.toPage !== "string")
         return;
 	var u = $.mobile.path.parseUrl( data.toPage );
-	var isShow = insMoney.pagebeforechange( u, data );
+	var isShow = pgInsMoney.pagebeforechange( u, data );
 	if ( isShow )
 		e.preventDefault();
 		return;

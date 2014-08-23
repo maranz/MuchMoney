@@ -3,14 +3,14 @@ $(document).on("pageshow", "#insMoney", function(){
 		user.refreshSelectUI( $( "#selectUsersout" ) );
 		user.refreshSelectUI( $( "#selectUsersin" ) );
 	}
-	insMoney.setFocus();	
+	pgInsMoney.setFocus();	
 });
 
-insMoney = {	
+pgInsMoney = {	
 	pagebeforechange:function ( u, data ){
 		if ( u.hash.search(/^#insMoney/) !== -1 ) {
-			insMoney.urlObj = new helperURL( u );
-			var hu = insMoney.urlObj;	
+			pgInsMoney.urlObj = new helperURL( u );
+			var hu = pgInsMoney.urlObj;	
 		 	var type = hu.item( "type" );
 		 	var name =  hu.item( "name" );
 		 	var pageSelector = hu.item( "selector" );
@@ -21,10 +21,10 @@ insMoney = {
 			var isinsMoneyout = ( u.hash.search(/^#insMoneyout/) !== -1 );
 			var isinsMoneyin = ( u.hash.search(/^#insMoneyin/) !== -1 );
 			if ( isinsMoneyout || isinsMoneyin ) {
-				insMoney.showInsMoneyContent( u );
+				pgInsMoney.showInsMoneyContent( u );
 			}
 			else {
-				insMoney.showInsMoneyPage( u, data.options, type,  $page );
+				pgInsMoney.showInsMoneyPage( u, data.options, type,  $page );
 			}			
 			return true;
 		}
