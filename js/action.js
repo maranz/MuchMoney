@@ -48,10 +48,10 @@ action = {
 			    	  data[ para ] = usr[ "id" ];  
 		    	  }
 		    	  break;
-		      case itemcost.id:
-		    	  valid = itemcost.valid( ui );
+		      case uiItemCost.id:
+		    	  valid = uiItemCost.valid( ui );
 		    	  if ( valid ){
-			    	  var itmcst = itemcost.selectedItem( ui );
+			    	  var itmcst = uiItemCost.selectedItem( ui );
 			    	  data[ para ] = itmcst[ "name" ];
 		    	  }
 		    	  break;
@@ -87,8 +87,8 @@ action = {
 		      case uiUser.id:
 		    	  uiUser.clear( ui );
 		    	  break;
-		      case itemcost.id:
-		    	  itemcost.clear( ui );
+		      case uiItemCost.id:
+		    	  uiItemCost.clear( ui );
 		    	  break;
 		    }
 			var type = $( ui ).attr( "mz-data-type" ); 

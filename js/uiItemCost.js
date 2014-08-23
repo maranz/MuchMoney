@@ -1,4 +1,4 @@
-itemcost = {
+uiItemCost = {
 		id:"itemcost",
 		itemsU: [],
 		itemsE: [],		
@@ -16,29 +16,29 @@ itemcost = {
 				helpAjax.call( data, function ( data, status ) {
 					if (!helperMessage.showMessageErrorJSON ( data )){
 						if ( ctype == "U" ){
-							itemcost.itemsU = data;
+							uiItemCost.itemsU = data;
 						}
 						else if ( ctype == "E" ) {
-							itemcost.itemsE = data;
+							uiItemCost.itemsE = data;
 						}
-						itemcost.loadSuggestion( "sugg" + id, data );
+						uiItemCost.loadSuggestion( "sugg" + id, data );
 						$( $item ).bind("input", function(e) {
 							 var text = $.trim( $( this ).val() );
-							 itemcost.filter( id, text );
+							 uiItemCost.filter( id, text );
 						});
 						$( $item ).keyup(function() {
-							if (itemcost.closeSuggestion){
-								itemcost.closeSuggestion = false;
-								itemcost.filter( id, "" );	
+							if (uiItemCost.closeSuggestion){
+								uiItemCost.closeSuggestion = false;
+								uiItemCost.filter( id, "" );	
 							}
 						});						
 						$( "#sugg" + id ).on("tap", "a", function(){
-							itemcost.closeSuggestion = true;
+							uiItemCost.closeSuggestion = true;
 							$( "#" + id ).val( $( this ).text() );							
 							$( "#" + id ).trigger( "keyup" );				
 						});
 						$( $item ).bind("blur", function() {
-							itemcost.validBlur( this );			         
+							uiItemCost.validBlur( this );			         
 						});
 					}	
 		   	 	});	
@@ -89,7 +89,7 @@ itemcost = {
 			var v = $( ui ).val();
 			var type = $( ui ).attr( "mz-data-type" );
 			var item = [];
-			item['id'] = itemcost.getId( v, type );
+			item['id'] = uiItemCost.getId( v, type );
 			item['name'] = v;
 			return item;
 		},
@@ -97,10 +97,10 @@ itemcost = {
 			var k = '';
 			var l = [];
 			if ( type == "U" ){
-				l = itemcost.itemsU;
+				l = uiItemCost.itemsU;
 			}
 			else if ( type == "E" ){ 
-				l = itemcost.itemsE;
+				l = uiItemCost.itemsE;
 			}
 			$.each( l, function( key, value ) { 
 				if( $.trim(value[1]).toLowerCase() === $.trim(text).toLowerCase() ) {
@@ -112,7 +112,7 @@ itemcost = {
 		},
 		validBlur: function ( ui ) {			
 			if ( helpUI.isError( ui ) ){
-				return itemcost.valid( ui );
+				return uiItemCost.valid( ui );
 			}
 		},
 		valid: function ( ui ) {			
