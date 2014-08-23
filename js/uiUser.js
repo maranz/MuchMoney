@@ -1,4 +1,4 @@
-user = {
+uiUser = {
 		id:"user",
 		fixLoad:false,
 		users:[],
@@ -10,7 +10,7 @@ user = {
 				if (!helperMessage.showMessageErrorJSON ( data ))
 					var $l = $("[mz-data-list='user']"); 
 					$.each( $l , function(index, state) {						
-						user.loadSelectUI( $l[index], data );
+						uiUser.loadSelectUI( $l[index], data );
 					});
 	   	    		
 	   	 	});				
@@ -18,7 +18,7 @@ user = {
 			$.each( $l , function(index, state) {
 				var $ui = $l[index];				
 				$( $ui ).bind( "change", function(event, ui) {
-					user.validChange( this );
+					uiUser.validChange( this );
 				});
 			});
 		},		
@@ -35,14 +35,14 @@ user = {
 			var $page = $( ui ).closest( "[data-role='page']" );
 			var type = $( $page ).data( "type" );
 			var ownerid = $( $page ).data( "ownerid" );
-			user.fixLoad = false;
+			uiUser.fixLoad = false;
 		 	if (type === 'user'){
 		    	$( ui ).val( ownerid );
 		    	try{
 		    		$( ui ).selectmenu('disable');
 		    		$( ui ).selectmenu("refresh");
 		    	} catch( e ) { 
-		    		user.fixLoad = true;
+		    		uiUser.fixLoad = true;
 		    	}
 		 	}
 		 	else{		 		
@@ -50,7 +50,7 @@ user = {
 		    		$( ui ).selectmenu("enable");
 		    		$( ui ).selectmenu("refresh");
 		    	} catch( e ) { 
-		    		user.fixLoad = true;
+		    		uiUser.fixLoad = true;
 		    	}
 		 	}
 		},
@@ -65,7 +65,7 @@ user = {
 		},
 		validChange: function ( ui ) {			
 			if ( helpUI.isError( ui ) ){
-				return user.valid( ui );
+				return uiUser.valid( ui );
 			}
 		},
 		valid: function ( ui ) {			
@@ -73,6 +73,6 @@ user = {
 		},
 		clear: function ( ui ) {
 			helpUI.clear ( ui );			
-			user.refreshSelectUI( ui );
+			uiUser.refreshSelectUI( ui );
 		}
 };

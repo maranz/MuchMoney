@@ -1,7 +1,7 @@
 $(document).on("pageshow", "#insMoney", function(){
-	if (user.fixLoad){
-		user.refreshSelectUI( $( "#selectUsersout" ) );
-		user.refreshSelectUI( $( "#selectUsersin" ) );
+	if (uiUser.fixLoad){
+		uiUser.refreshSelectUI( $( "#selectUsersout" ) );
+		uiUser.refreshSelectUI( $( "#selectUsersin" ) );
 	}
 	pgInsMoney.setFocus();	
 });

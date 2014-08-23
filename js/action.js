@@ -41,10 +41,10 @@ action = {
 			var valid = true;
 			var list = $( ui ).attr( "mz-data-list" );
 			switch( list ){
-		      case user.id:
-	    		  valid = user.valid( ui );
+		      case uiUser.id:
+	    		  valid = uiUser.valid( ui );
 		    	  if ( valid ){
-		    		  var usr = user.selectedItem( ui );
+		    		  var usr = uiUser.selectedItem( ui );
 			    	  data[ para ] = usr[ "id" ];  
 		    	  }
 		    	  break;
@@ -84,8 +84,8 @@ action = {
 		clearUI: function ( ui ){			
 			var list = $( ui ).attr( "mz-data-list" );
 			switch( list ){
-		      case user.id:
-		    	  user.clear( ui );
+		      case uiUser.id:
+		    	  uiUser.clear( ui );
 		    	  break;
 		      case itemcost.id:
 		    	  itemcost.clear( ui );
