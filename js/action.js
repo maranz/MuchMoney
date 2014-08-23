@@ -58,10 +58,10 @@ action = {
 		    }
 			var type = $( ui ).attr( "mz-data-type" ); 
 			switch(type){
-		      case dreg.id:
-		    	  valid = dreg.valid( ui );
+		      case uiDate.id:
+		    	  valid = uiDate.valid( ui );
 		    	  if ( valid ){
-			    	  var d = dreg.selectedItem( ui );
+			    	  var d = uiDate.selectedItem( ui );
 			    	  data[ para ] = d;
 		    	  }
 		    	  break;
@@ -93,8 +93,8 @@ action = {
 		    }
 			var type = $( ui ).attr( "mz-data-type" ); 
 			switch(type){
-		      case dreg.id:
-		    	  dreg.clear( ui );
+		      case uiDate.id:
+		    	  uiDate.clear( ui );
 		    	  break;
 		      case uiMoney.id:
 		    	  uiMoney.clear( ui );

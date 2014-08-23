@@ -1,17 +1,17 @@
-dreg ={
+uiDate ={
 		id:"dreg",
 		load: function () {
 			var $l = $("[mz-data-type='dreg']"); 
 			$.each( $l , function(index, state) {
 				var $ui = $l[index];				
 				$( $ui ).on("blur", function() {
-					dreg.validBlur( $ui );			         
+					uiDate.validBlur( $ui );			         
 				});
 			});
 		},
 		validBlur: function ( ui ) {			
 			if ( helpUI.isError( ui ) ){
-				return dreg.valid( ui );
+				return uiDate.valid( ui );
 			}
 		},
 		valid: function ( ui ) {
