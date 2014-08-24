@@ -26,14 +26,12 @@ action = {
 					valid = v;
 				}
 			});
-			if ( valid ){
-				/*
+			if ( valid ){				
 				 helpAjax.call(data, function ( data ) {
 					if (!helperMessage.showMessageErrorJSON ( data )){
-						alert('saveOk');
+						action.clear ( $page );
 					}	
-		   	 	});
-		   	 	*/	
+		   	 	});		   	 	
 			}
 		},
 		loadDataByUI: function ( ui, data){

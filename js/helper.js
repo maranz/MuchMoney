@@ -104,7 +104,7 @@ helpAjax = {
 	   	      timeout:10000,
 	   	      success: success,
 	       	  error: function ( xhr, status ) {
-	       		helperMessage.showAJAXException(  xhr, status );
+	       		  helperMessage.showAJAXException(  xhr, status );
 	       	  }  
 		});		
 		/*
