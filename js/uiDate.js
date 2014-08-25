@@ -7,6 +7,9 @@ uiDate ={
 				$( $ui ).on("blur", function() {
 					uiDate.validBlur( $ui );			         
 				});
+				$( $ui ).on( "beforesaving", function(event, data) {					
+					return uiDate.beforeSaving( this, data );
+				});
 			});
 		},
 		validBlur: function ( ui ) {			
@@ -36,5 +39,14 @@ uiDate ={
 			if (def == "now"){
 				$( ui ).val( helperDate.getNowToString() );
 			}
+		},
+		beforeSaving: function ( ui,  data ){
+			var para = $( ui ).attr( "mz-data-para" );
+			var valid = uiDate.valid( ui );
+    	    if ( valid ){
+	    	  var d = uiDate.selectedItem( ui );
+	    	  data[ para ] = d;
+    	    }
+	    	return valid;
 		}
 };

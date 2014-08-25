@@ -10,6 +10,9 @@ uiMoney = {
 				$( $ui ).bind('blur', function() {
 					uiMoney.validBlur( this );			         
 				});
+				$( $ui ).on( "beforesaving", function(event, data) {					
+					return uiMoney.beforeSaving( this, data );
+				});
 			});
 		},
 		mask: function(input) {
@@ -48,6 +51,15 @@ uiMoney = {
 		},
 		clear: function ( ui ){
 			helpUI.clear ( ui );
+		},
+		beforeSaving: function ( ui,  data ){			
+			var para = $( ui ).attr( "mz-data-para" );
+			var valid = uiMoney.valid( ui );
+    	    if ( valid ){
+		    	var mny = uiMoney.selectedItem( ui );
+		    	data[ para ] = mny["val"];
+    	    }
+	    	return valid;
 		}
 };
 

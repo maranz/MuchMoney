@@ -6,6 +6,10 @@ $(document).on("pageshow", "#insMoney", function(){
 	pgInsMoney.setFocus();	
 });
 
+$(document).on("aftersavepage", "#insMoney", function(){
+	return "false";
+});
+
 pgInsMoney = {	
 	pagebeforechange:function ( u, data ){
 		if ( u.hash.search(/^#insMoney/) !== -1 ) {

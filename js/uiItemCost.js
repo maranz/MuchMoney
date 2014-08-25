@@ -40,6 +40,9 @@ uiItemCost = {
 						$( $item ).bind("blur", function() {
 							uiItemCost.validBlur( this );			         
 						});
+						$( $item ).on( "beforesaving", function(event, data) {					
+							return uiItemCost.beforeSaving( this, data );
+						});
 					}	
 		   	 	});	
 				
@@ -120,5 +123,14 @@ uiItemCost = {
 		},
 		clear: function ( ui ){
 			helpUI.clear ( ui );
+		},
+		beforeSaving: function ( ui,  data ){
+			var para = $( ui ).attr( "mz-data-para" );
+			var valid = uiDate.valid( ui );
+	    	if ( valid ){
+		      var d = uiDate.selectedItem( ui );
+		      data[ para ] = d;
+	    	}
+			return valid;
 		}
 };

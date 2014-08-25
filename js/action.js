@@ -20,8 +20,9 @@ action = {
 				data[ "groupid" ] = ownerid;
 			}
 			var valid = true;
-			$.each( $l , function(index, state) {
-				var v = action.loadDataByUI( $l[index] , data);
+			$.each( $l , function(index, state) {				
+				var event = $.Event( "beforesaving" );
+				var v = $( $l[index] ).trigger( event, data );
 				if ( valid ) {
 					valid = v;
 				}
@@ -29,49 +30,20 @@ action = {
 			if ( valid ){				
 				 helpAjax.call(data, function ( data ) {
 					if (!helperMessage.showMessageErrorJSON ( data )){
+						var moneyID = data[0][0];
+						var itemCostId = data[0][1];
+						var itemCostName = data[0][2];
+						
+						/*var event = $.Event("aftersavepage");						
+						var r = $page.trigger( event );
+						if (event.result == false)
+							alert ( 'Stop' );
+						*/
+						
 						action.clear ( $page );
 					}	
 		   	 	});		   	 	
 			}
-		},
-		loadDataByUI: function ( ui, data){
-			var para = $( ui ).attr( "mz-data-para" );
-			var valid = true;
-			var list = $( ui ).attr( "mz-data-list" );
-			switch( list ){
-		      case uiUser.id:
-	    		  valid = uiUser.valid( ui );
-		    	  if ( valid ){
-		    		  var usr = uiUser.selectedItem( ui );
-			    	  data[ para ] = usr[ "id" ];  
-		    	  }
-		    	  break;
-		      case uiItemCost.id:
-		    	  valid = uiItemCost.valid( ui );
-		    	  if ( valid ){
-			    	  var itmcst = uiItemCost.selectedItem( ui );
-			    	  data[ para ] = itmcst[ "name" ];
-		    	  }
-		    	  break;
-		    }
-			var type = $( ui ).attr( "mz-data-type" ); 
-			switch(type){
-		      case uiDate.id:
-		    	  valid = uiDate.valid( ui );
-		    	  if ( valid ){
-			    	  var d = uiDate.selectedItem( ui );
-			    	  data[ para ] = d;
-		    	  }
-		    	  break;
-		      case uiMoney.id:
-		    	  valid = uiMoney.valid( ui );
-		    	  if ( valid ){
-			    	  var mny = uiMoney.selectedItem( ui );
-			    	  data[ para ] = mny["val"];
-		    	  }
-		    	  break;
-		    }
-			return valid;
 		},
 		clear: function( ui ) {
 			var $l = $( ui ).find(":input");

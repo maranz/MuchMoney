@@ -19,6 +19,9 @@ uiUser = {
 				var $ui = $l[index];				
 				$( $ui ).bind( "change", function(event, ui) {
 					uiUser.validChange( this );
+				});				
+				$( $ui ).on( "beforesaving", function(event, data) {					
+					return uiUser.beforeSaving( this, data );
 				});
 			});
 		},		
@@ -74,5 +77,14 @@ uiUser = {
 		clear: function ( ui ) {
 			helpUI.clear ( ui );			
 			uiUser.refreshSelectUI( ui );
+		},
+		beforeSaving: function ( ui,  data ){			
+			var para = $( ui ).attr( "mz-data-para" );
+			var valid = uiUser.valid( ui );
+	    	if ( valid ){
+	    		var usr = uiUser.selectedItem( ui );
+		    	data[ para ] = usr[ "id" ];  
+		    }
+	    	return valid;
 		}
 };
