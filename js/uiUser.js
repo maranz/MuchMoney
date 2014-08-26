@@ -17,11 +17,14 @@ uiUser = {
 			var $l = $("[mz-data-list='user']"); 
 			$.each( $l , function(index, state) {
 				var $ui = $l[index];				
-				$( $ui ).bind( "change", function(event, ui) {
+				$( $ui ).bind( "change", function( event ) {
 					uiUser.validChange( this );
 				});				
-				$( $ui ).on( "beforesaving", function(event, data) {					
+				$( $ui ).on( "beforesaving", function( event, data ) {					
 					return uiUser.beforeSaving( this, data );
+				});
+				$( $ui ).on( "aftersaved", function( event ) {					
+					 uiUser.afterSaved( this );
 				});
 			});
 		},		
@@ -86,5 +89,8 @@ uiUser = {
 		    	data[ para ] = usr[ "id" ];  
 		    }
 	    	return valid;
+		},
+		afterSaved: function ( ui ){
+			 uiUser.clear( ui );
 		}
 };

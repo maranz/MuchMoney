@@ -1,8 +1,8 @@
-var helperURL = function (urlObj) {
+var helperURL = function ( url ) {
 	 var list = new Array();
-	 if (urlObj != null){
-		 list ["selector"] = urlObj.hash.replace( /\?.*$/, "" );
-		 var urlParam = urlObj.hash.replace( /.*\?/, "" );
+	 if (url != null){
+		 list ["selector"] = url.replace( /\?.*$/, "" );
+		 var urlParam = url.replace( /.*\?/, "" );
 		 var params = urlParam.split("&");
 		 for (var param in params) {
 			 var split =  params[param].split("=");
