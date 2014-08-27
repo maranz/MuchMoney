@@ -74,7 +74,11 @@ uiItemCost = {
 					$(this).addClass("ui-screen-hidden");
 				}
 			});
-			$( "#sugg" + id ).listview( "refresh" );
+			try {
+				$( "#sugg" + id ).listview( "refresh" );
+			}catch( err ) {
+				helperMessage.showMessage( err.message );
+			}		
 		},
 		loadSuggestion: function ( id, data ){
 			var tmp = "<li data-icon='false' class='ui-screen-hidden'><a href='#' >{0}</a></li>";
@@ -122,6 +126,7 @@ uiItemCost = {
 			return helpUI.valid( ui );
 		},
 		cleaner: function ( ui ){
+			uiItemCost.filter( $( ui ).attr( "id" ), "" );
 			helpUI.cleaner ( ui );
 		},
 		beforeSaving: function ( ui,  data ){
