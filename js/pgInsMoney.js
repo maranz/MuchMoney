@@ -1,21 +1,25 @@
-$(document).on("pageshow", "#insMoney", function(){
-	if (uiUser.fixLoad){
-		uiUser.refreshSelectUI( $( "#selectUsersout" ) );
-		uiUser.refreshSelectUI( $( "#selectUsersin" ) );
-	}
-	pgInsMoney.setFocus();	
-});
- 
-$(document).on("aftersavepage", "#insMoney", function(){
-	return "false";
-});
-
-pgInsMoney = {	
+pgInsMoney = {
+	load: function (){
+		var $ui = "#insMoney";
+		$( $ui ).on("pageshow", function(){
+			if (uiUser.fixLoad){
+				uiUser.refreshSelectUI( $( "#selectUsersout" ) );
+				uiUser.refreshSelectUI( $( "#selectUsersin" ) );
+			}
+			pgInsMoney.setFocus();	
+		});
+		
+		$( $ui ).on("aftersavepage", function(){
+			return "false";
+		});
+	},	
 	pagebeforechange:function ( u, data ){
-		if (!data.options.changeHash) {	
+		if ((data.options.fromPage != null 
+			|| data.options.fromPage != undefined) 
+		    && !data.options.changeHash) {	
 			return false;
 		}
-		if ( u.hash.search(/^#insMoney/) !== -1 ) {						
+		if ( u.hash.search(/^#insMoney/) !== -1 ) {			
 			pgInsMoney.urlObj = new helperURL( u.hash );
 			var hu = pgInsMoney.urlObj;	
 		 	var type = hu.item( "type" );
@@ -31,7 +35,10 @@ pgInsMoney = {
 			}
 			var isinsMoneyout = ( u.hash.search(/^#insMoneyout/) !== -1 );
 			var isinsMoneyin = ( u.hash.search(/^#insMoneyin/) !== -1 );
-			if ( isinsMoneyout || isinsMoneyin ) {
+			if (data.options.fromPage === null 
+			 || data.options.fromPage === undefined){
+				pgInsMoney.showInsMoneyPage( u, data.options, type,  $ui, "new" );
+			}else if ( isinsMoneyout || isinsMoneyin ) {
 				pgInsMoney.showInsMoneyContent( u, pageSelector );
 			}
 			else {

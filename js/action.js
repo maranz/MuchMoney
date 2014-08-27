@@ -16,7 +16,7 @@ action = {
 			data[ "action" ] = act;
 			var $page = $( event ).closest( "[data-role='page']" );
 			var ownerid = $( $page ).data( "ownerid" );
-			if (ownerid != 'undefined' && ownerid != null || ownerid != ''){
+			if (ownerid != undefined && ownerid != null || ownerid != ''){
 				data[ "groupid" ] = ownerid;
 			}
 			var valid = true;

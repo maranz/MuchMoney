@@ -14,6 +14,7 @@ $(document).on("pagebeforecreate", "#homepage",function(){
 	uiDate.load();
 	uiItemCost.load();
 	uiMoney.load();
+	pgInsMoney.load();
 	action.load();
 }); 
 
