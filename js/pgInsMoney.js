@@ -16,8 +16,8 @@ pgInsMoney = {
 		var moneyID = data[0];
 		var itemCostId = data[1];
 		var itemCostName = data[2];
-		
-		//action.cleaner( $( "#insMoney" ) );	
+		action.cleaner( $( "#insMoney" ) );
+		uiItemCost.load();
 	},
 	pagebeforechange: function ( u, data ){
 		if ((data.options.fromPage != null 
