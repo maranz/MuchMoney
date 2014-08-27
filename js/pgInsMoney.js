@@ -8,12 +8,18 @@ pgInsMoney = {
 			}
 			pgInsMoney.setFocus();	
 		});
-		
-		$( $ui ).on("aftersavepage", function(){
-			return "false";
+		$( $ui ).on("aftersavepage", function( event, data ){
+			pgInsMoney.afterSavePage( data );
 		});
-	},	
-	pagebeforechange:function ( u, data ){
+	},
+	afterSavePage: function ( data ) {
+		var moneyID = data[0];
+		var itemCostId = data[1];
+		var itemCostName = data[2];
+		
+		//action.cleaner( $( "#insMoney" ) );	
+	},
+	pagebeforechange: function ( u, data ){
 		if ((data.options.fromPage != null 
 			|| data.options.fromPage != undefined) 
 		    && !data.options.changeHash) {	

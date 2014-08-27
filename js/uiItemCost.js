@@ -87,16 +87,13 @@ uiItemCost = {
 			var suggestion = $( "#" + id );			
 			suggestion.html( html );
 		},
-		selectedItem: function ( ui ){
-			/*
-			 * se serve implementare ID della voce, l'aggancio al metodo 
-			 * è già predisposto
-			*/ 			
+		selectedItem: function ( ui ){					
 			var v = $( ui ).val();
 			var type = $( ui ).attr( "mz-data-type" );
 			var item = [];
-			item['id'] = uiItemCost.getId( v, type );
-			item['name'] = v;
+			item["id"] = uiItemCost.getId( v, type );
+			item["name"] = v;
+			item["type"] = type;
 			return item;
 		},
 		getId: function ( text, type ){
@@ -128,11 +125,12 @@ uiItemCost = {
 			helpUI.cleaner ( ui );
 		},
 		beforeSaving: function ( ui,  data ){
-			var para = $( ui ).attr( "mz-data-para" );
-			var valid = uiDate.valid( ui );
-	    	if ( valid ){
-		      var d = uiDate.selectedItem( ui );
-		      data[ para ] = d;
+			var para = $( ui ).attr( "mz-data-para" );			
+			var valid = uiItemCost.valid( ui );
+	    	if ( valid ){	    	  
+		      var d = uiItemCost.selectedItem( ui );
+		      data[ para ] = d["name"];
+		      data[ "ctype" ] = d["type"];
 	    	}
 			return valid;
 		},

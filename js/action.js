@@ -30,21 +30,8 @@ action = {
 			if ( valid ){				
 				 helpAjax.call(data, function ( data ) {
 					if (!helperMessage.showMessageErrorJSON ( data )){
-						var moneyID = data[0][0];
-						var itemCostId = data[0][1];
-						var itemCostName = data[0][2];
-						
-						$.each( $l , function(index, state) {
-							var event = $.Event( "aftersaved" );
-							$( $l[index] ).trigger( event, data );
-						});
-						/*var event = $.Event("aftersavepage");						
-						var r = $page.trigger( event );
-						if (event.result == false)
-							alert ( 'Stop' );
-						*/
-						
-						//action.clear ( $page );
+						var event = $.Event("aftersavepage");						
+						var r = $page.trigger( event, data );
 					}	
 		   	 	});		   	 	
 			}
