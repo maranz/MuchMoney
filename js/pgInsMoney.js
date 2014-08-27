@@ -5,7 +5,7 @@ $(document).on("pageshow", "#insMoney", function(){
 	}
 	pgInsMoney.setFocus();	
 });
-
+ 
 $(document).on("aftersavepage", "#insMoney", function(){
 	return "false";
 });
@@ -23,38 +23,31 @@ pgInsMoney = {
 		 	var pageSelector = hu.item( "selector" );
 		 	var ownerid = hu.item( "ownerid" );
 		 	var act = hu.item( "action" );
-		 	var $page = $( pageSelector );
-		 	$( $page ).data( "type",  type);
-	        $( $page ).data( "ownerid",  ownerid);	        
+		 	var $ui = $( pageSelector );
+		 	$( $ui ).data( "type",  type);
+	        $( $ui ).data( "ownerid",  ownerid);
+	        if ( act === "new"){
+				action.clear( $( "#insMoney" ) );	
+			}
 			var isinsMoneyout = ( u.hash.search(/^#insMoneyout/) !== -1 );
 			var isinsMoneyin = ( u.hash.search(/^#insMoneyin/) !== -1 );
 			if ( isinsMoneyout || isinsMoneyin ) {
-				pgInsMoney.showInsMoneyContent( u );
+				pgInsMoney.showInsMoneyContent( u, pageSelector );
 			}
 			else {
-				pgInsMoney.showInsMoneyPage( u, data.options, type,  $page, act );
+				pgInsMoney.showInsMoneyPage( u, data.options, type,  $ui, act );
 			}
 			return true;
 		}
 	},
-	showInsMoneyPage: function ( urlObj, options, type, $page, act ){		
-		if ( act === "new"){
-			action.clear( $( "#insMoney" ) );	
-		}
+	showInsMoneyPage: function ( urlObj, options, type, $ui ){
 	 	insMoneynav.load(type);
-	 	$page.page();
+	 	$ui.page();
 	    options.dataUrl = urlObj.href;
-	 	$.mobile.changePage( $page, options );
+	 	$.mobile.changePage( $ui, options );
 	},
-	showInsMoneyContent: function ( urlObj ){		
-		var $a = $("div[data-role='navbar'] a[href='" + urlObj.hash + "']");
-		var param = $( $a ).attr( "data-url" );
-		var hu = new helperURL( param );
-		var act = hu.item( "action" );
-		if ( act === "new"){
-			action.clear( $( "#insMoney" ) );	
-		}
-		var $content = $( $a.attr( "href" ) );
+	showInsMoneyContent: function ( u, pageSelector ){
+		var $content = $( pageSelector );
 	    $content.siblings().hide();
 	    $content.show();
 	},
