@@ -27,7 +27,7 @@ pgInsMoney = {
 		 	$( $ui ).data( "type",  type);
 	        $( $ui ).data( "ownerid",  ownerid);
 	        if ( act === "new"){
-				action.clear( $( "#insMoney" ) );	
+				action.cleaner( $( "#insMoney" ) );	
 			}
 			var isinsMoneyout = ( u.hash.search(/^#insMoneyout/) !== -1 );
 			var isinsMoneyin = ( u.hash.search(/^#insMoneyin/) !== -1 );

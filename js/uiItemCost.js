@@ -6,9 +6,9 @@ uiItemCost = {
 		load: function(){
 			var $l = $( "[mz-data-list='itemcost']" ); 
 			$.each( $l , function(index, state) {
-				var $item = $l[index]; 
-				var id = $item.id;
-				var ctype = $( $item ).attr( "mz-data-type" );
+				var $ui = $l[index]; 
+				var id = $ui.id;
+				var ctype = $( $ui ).attr( "mz-data-type" );
 				var data = {
 						 "action":"itemcosts",  
 						 "ctype" : ctype
@@ -22,11 +22,11 @@ uiItemCost = {
 							uiItemCost.itemsE = data;
 						}
 						uiItemCost.loadSuggestion( "sugg" + id, data );
-						$( $item ).bind("input", function(e) {
+						$( $ui ).bind("input", function(e) {
 							 var text = $.trim( $( this ).val() );
 							 uiItemCost.filter( id, text );
 						});
-						$( $item ).keyup(function() {
+						$( $ui ).keyup(function() {
 							if (uiItemCost.closeSuggestion){
 								uiItemCost.closeSuggestion = false;
 								uiItemCost.filter( id, "" );	
@@ -37,11 +37,14 @@ uiItemCost = {
 							$( "#" + id ).val( $( this ).text() );							
 							$( "#" + id ).trigger( "keyup" );				
 						});
-						$( $item ).bind("blur", function() {
+						$( $ui ).bind("blur", function() {
 							uiItemCost.validBlur( this );			         
 						});
-						$( $item ).on( "beforesaving", function(event, data) {					
+						$( $ui ).on( "beforesaving", function(event, data) {					
 							return uiItemCost.beforeSaving( this, data );
+						});
+						$( $ui ).on( "cleaner", function( event ) {					
+							 uiItemCost.cleaner( this );
 						});
 					}	
 		   	 	});	
@@ -121,8 +124,8 @@ uiItemCost = {
 		valid: function ( ui ) {			
 			return helpUI.valid( ui );
 		},
-		clear: function ( ui ){
-			helpUI.clear ( ui );
+		cleaner: function ( ui ){
+			helpUI.cleaner ( ui );
 		},
 		beforeSaving: function ( ui,  data ){
 			var para = $( ui ).attr( "mz-data-para" );
@@ -132,5 +135,5 @@ uiItemCost = {
 		      data[ para ] = d;
 	    	}
 			return valid;
-		}
+		},
 };

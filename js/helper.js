@@ -147,7 +147,7 @@ helpUI = {
 	isError: function ( ui ){
 		return $( ui ).closest('div').hasClass( "ui-error" );
 	},
-	clear: function ( ui ){
+	cleaner: function ( ui ){
 		$( ui ).val( "" );
 		helpUI.removeError( ui );
 	}

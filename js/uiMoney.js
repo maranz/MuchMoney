@@ -13,6 +13,9 @@ uiMoney = {
 				$( $ui ).on( "beforesaving", function(event, data) {					
 					return uiMoney.beforeSaving( this, data );
 				});
+				$( $ui ).on( "cleaner", function( event ) {					
+					 uiMoney.cleaner( this );
+				});
 			});
 		},
 		mask: function(input) {
@@ -49,8 +52,8 @@ uiMoney = {
 		valid: function ( ui ) {			
 			return helpUI.valid( ui );
 		},
-		clear: function ( ui ){
-			helpUI.clear ( ui );
+		cleaner: function ( ui ){
+			helpUI.cleaner ( ui );
 		},
 		beforeSaving: function ( ui,  data ){			
 			var para = $( ui ).attr( "mz-data-para" );

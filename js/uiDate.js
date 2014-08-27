@@ -10,6 +10,9 @@ uiDate ={
 				$( $ui ).on( "beforesaving", function(event, data) {					
 					return uiDate.beforeSaving( this, data );
 				});
+				$( $ui ).on( "cleaner", function( event ) {					
+					 uiDate.cleaner( this );
+				});
 			});
 		},
 		validBlur: function ( ui ) {			
@@ -33,8 +36,8 @@ uiDate ={
 		selectedItem: function ( ui ) {
 			return $( ui ).val();
 		},
-		clear: function ( ui ) {
-			helpUI.clear ( ui );
+		cleaner: function ( ui ) {
+			helpUI.cleaner ( ui );
 			var def =  $( ui ).attr( "mz-data-default" );
 			if (def == "now"){
 				$( ui ).val( helperDate.getNowToString() );
@@ -48,5 +51,5 @@ uiDate ={
 	    	  data[ para ] = d;
     	    }
 	    	return valid;
-		}
+		}		
 };

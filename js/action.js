@@ -25,7 +25,7 @@ action = {
 				var v = $( $l[index] ).trigger( event, data );
 				if ( valid ) {
 					valid = v;
-				}
+				}				
 			});
 			if ( valid ){				
 				 helpAjax.call(data, function ( data ) {
@@ -49,30 +49,11 @@ action = {
 		   	 	});		   	 	
 			}
 		},
-		clear: function( ui ) {
+		cleaner: function( ui ) {
 			var $l = $( ui ).find(":input");
 			$.each( $l , function(index, state) {
-				action.clearUI( $l[index] );
+				var event = $.Event( "cleaner" );
+				$( $l[index] ).trigger( event );
 			});
-		},
-		clearUI: function ( ui ){			
-			var list = $( ui ).attr( "mz-data-list" );
-			switch( list ){
-		      case uiUser.id:
-		    	  uiUser.clear( ui );
-		    	  break;
-		      case uiItemCost.id:
-		    	  uiItemCost.clear( ui );
-		    	  break;
-		    }
-			var type = $( ui ).attr( "mz-data-type" ); 
-			switch(type){
-		      case uiDate.id:
-		    	  uiDate.clear( ui );
-		    	  break;
-		      case uiMoney.id:
-		    	  uiMoney.clear( ui );
-		    	  break;
-		    }
 		}
 };

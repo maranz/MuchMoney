@@ -23,8 +23,8 @@ uiUser = {
 				$( $ui ).on( "beforesaving", function( event, data ) {					
 					return uiUser.beforeSaving( this, data );
 				});
-				$( $ui ).on( "aftersaved", function( event ) {					
-					 uiUser.afterSaved( this );
+				$( $ui ).on( "cleaner", function( event ) {					
+					 uiUser.cleaner( this );
 				});
 			});
 		},		
@@ -77,8 +77,8 @@ uiUser = {
 		valid: function ( ui ) {			
 			return helpUI.valid( ui );
 		},
-		clear: function ( ui ) {
-			helpUI.clear ( ui );			
+		cleaner: function ( ui ) {
+			helpUI.cleaner ( ui );			
 			uiUser.refreshSelectUI( ui );
 		},
 		beforeSaving: function ( ui,  data ){			
@@ -89,8 +89,5 @@ uiUser = {
 		    	data[ para ] = usr[ "id" ];  
 		    }
 	    	return valid;
-		},
-		afterSaved: function ( ui ){
-			 uiUser.clear( ui );
 		}
 };
