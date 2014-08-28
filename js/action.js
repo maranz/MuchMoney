@@ -15,9 +15,9 @@ action = {
 			var data = {};
 			data[ "action" ] = act;
 			var $page = $( event ).closest( "[data-role='page']" );
-			var ownerid = $( $page ).data( "ownerid" );
-			if (ownerid != undefined && ownerid != null || ownerid != ''){
-				data[ "groupid" ] = ownerid;
+			var projectid = $( $page ).data( "projectid" );
+			if (projectid != undefined && projectid != null || projectid != ''){
+				data[ "projectid" ] = projectid;
 			}
 			var valid = true;
 			$.each( $l , function(index, state) {				

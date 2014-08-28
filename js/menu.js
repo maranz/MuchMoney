@@ -20,13 +20,13 @@ menu = {
 			 var img = $.trim(data[i][4]);
 			 var selector = $.trim(data[i][5]);
 			 var type = $.trim(data[i][6]);
-			 var ownerid = $.trim(data[i][8]);
+			 var projectid = $.trim(data[i][8]);
 			 var html = "<li data-theme='c'>";
-			 html += ("<a href='{0}?type={1}&name={2}&ownerid={3}&action=new' class='ui-link-inherit'>")
+			 html += ("<a href='{0}?type={1}&name={2}&projectid={3}&action=new' class='ui-link-inherit'>")
 			 		 .replace("{0}", selector)
 			 		 .replace("{1}", type)
 			 		 .replace("{2}", title)
-			 		 .replace("{3}", ownerid);
+			 		 .replace("{3}", projectid);
 			 html += ("<img src='img/{0}' class='ui-li-thumb'>").replace("{0}", img); 
 			 html += ("<h3 class='ui-li-heading'>{0}</h3>").replace("{0}", title);
 			 html += ("<p class='ui-li-desc'>{0}</p>").replace("{0}", subtitle);  

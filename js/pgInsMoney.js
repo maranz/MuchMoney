@@ -31,11 +31,11 @@ pgInsMoney = {
 		 	var type = hu.item( "type" );
 		 	var name =  hu.item( "name" );
 		 	var pageSelector = hu.item( "selector" );
-		 	var ownerid = hu.item( "ownerid" );
+		 	var projectid = hu.item( "projectid" );
 		 	var act = hu.item( "action" );
 		 	var $ui = $( pageSelector );
 		 	$( $ui ).data( "type",  type);
-	        $( $ui ).data( "ownerid",  ownerid);
+	        $( $ui ).data( "projectid",  projectid);
 	        if ( act === "new"){
 				action.cleaner( $( "#insMoney" ) );	
 			}
