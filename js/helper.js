@@ -17,15 +17,31 @@ var helperURL = function ( url ) {
 };
 
 helperData = {
-	addDataKey: function(data){
+	addDataKey: function( data ){
     	 data["userid"] = config.idUser();
 		 data["appid"] = config.idApp();
      }
 };
 
 helperDate = {
-	overFlow : function ( val ){		
-		return ( new Date( val ) > new Date() );
+	overFlow : function ( val ){
+		var c = val.replace ( /-/g , "");
+		var n = helperDate.getDateNowToString();
+		return ( c > n );
+	},
+	getDateNowToString: function () {
+		var n = new Date();
+		var m = (n.getMonth() + 1); 
+		if ( m.length = 1 ){
+			return "".concat( n.getFullYear()
+					 , "0"
+					 , m
+					 , n.getDate());
+		}else{
+			return "".concat( n.getFullYear()					 
+					 , m
+					 , n.getDate());
+		}
 	},
 	getNowToString: function () {
 		var now = new Date();   
