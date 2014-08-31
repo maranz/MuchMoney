@@ -12,7 +12,7 @@ $(document).on("pagebeforecreate", "#homepage",function(){
 	menu.loadStartMenu("startmenu");
 	uiUser.load();
 	uiDate.load();
-	uiItemCost.load();
+	//uiItemCost.load();
 	uiMoney.load();
 	pgInsMoney.load();
 	action.load();

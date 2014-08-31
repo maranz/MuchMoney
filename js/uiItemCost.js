@@ -2,17 +2,23 @@ uiItemCost = {
 		id:"itemcost",
 		itemsU: [],
 		itemsE: [],		
-		closeSuggestion: false,
-		load: function(){
-			var $l = $( "[mz-data-list='itemcost']" ); 
+		isCloseSuggestion: false,
+		load: function( page ){
+			var $l = $( page ).find( "[mz-data-list='itemcost']" );
 			$.each( $l , function(index, state) {
 				var $ui = $l[index]; 
 				var id = $ui.id;
+				var ownerid =  $( page ).data( "ownerid" );
+				var type =  $( page ).data( "type" );
 				var ctype = $( $ui ).attr( "mz-data-type" );
-				var data = {
-						 "action":"itemcosts",  
-						 "ctype" : ctype
-		    	};
+				var data = {};
+				data[ "action" ] = "itemcosts";
+				data[ "ctype" ] = ctype;
+				if ( type == "user" ) {
+					data[ "useridowner" ] = ownerid;
+				}else if ( type == "project" ){
+					data[ "projectid" ] = ownerid;
+				}				
 				helpAjax.call( data, function ( data, status ) {
 					if (!helperMessage.showMessageErrorJSON ( data )){
 						if ( ctype == "U" ){
@@ -27,18 +33,18 @@ uiItemCost = {
 							 uiItemCost.filter( id, text );
 						});
 						$( $ui ).keyup(function() {
-							if (uiItemCost.closeSuggestion){
-								uiItemCost.closeSuggestion = false;
+							if (uiItemCost.isCloseSuggestion){
+								uiItemCost.isCloseSuggestion = false;
 								uiItemCost.filter( id, "" );	
 							}
 						});						
-						$( "#sugg" + id ).on("tap", "a", function(){
-							uiItemCost.closeSuggestion = true;
-							$( "#" + id ).val( $( this ).text() );							
-							$( "#" + id ).trigger( "keyup" );				
+						$( "#sugg" + id ).on("tap", "a", function(){							
+							$( $ui ).val( $( this ).text() );	
+							uiItemCost.CloseSuggestion( this );				
 						});
 						$( $ui ).bind("blur", function() {
-							uiItemCost.validBlur( this );			         
+							uiItemCost.validBlur( this );
+							uiItemCost.CloseSuggestion( this );
 						});
 						$( $ui ).on( "beforesaving", function(event, data) {					
 							return uiItemCost.beforeSaving( this, data );
@@ -46,10 +52,20 @@ uiItemCost = {
 						$( $ui ).on( "cleaner", function( event ) {					
 							 uiItemCost.cleaner( this );
 						});
+					} else {
+						uiItemCost.removeSuggestion( id );						
 					}	
-		   	 	});	
-				
+		   	 	});				
 			});
+		},
+		CloseSuggestion: function ( ui ){
+			uiItemCost.isCloseSuggestion = true;
+			$( ui ).trigger( "keyup" );
+		},
+		removeSuggestion: function ( id ) {
+			var sugg = $( "#sugg" + id ); 
+			sugg.html( "" );
+			sugg.listview( "refresh" );
 		},
 		filter: function ( id, text ){
 			$("#sugg" + id + " li").each(function (index) {

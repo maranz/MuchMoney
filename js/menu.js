@@ -22,7 +22,7 @@ menu = {
 			 var type = $.trim(data[i][6]);
 			 var projectid = $.trim(data[i][8]);
 			 var html = "<li data-theme='c'>";
-			 html += ("<a href='{0}?type={1}&name={2}&projectid={3}&action=new' class='ui-link-inherit'>")
+			 html += ("<a href='{0}?type={1}&name={2}&ownerid={3}&action=new' class='ui-link-inherit'>")
 			 		 .replace("{0}", selector)
 			 		 .replace("{1}", type)
 			 		 .replace("{2}", title)

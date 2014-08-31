@@ -17,7 +17,7 @@ pgInsMoney = {
 		var itemCostId = data[1];
 		var itemCostName = data[2];
 		action.cleaner( $( "#insMoney" ) );
-		uiItemCost.load();
+		uiItemCost.load( $( "#insMoney" ) );
 	},
 	pagebeforechange: function ( u, data ){
 		if ((data.options.fromPage != null 
@@ -31,11 +31,11 @@ pgInsMoney = {
 		 	var type = hu.item( "type" );
 		 	var name =  hu.item( "name" );
 		 	var pageSelector = hu.item( "selector" );
-		 	var projectid = hu.item( "projectid" );
+		 	var ownerid = hu.item( "ownerid" );
 		 	var act = hu.item( "action" );
 		 	var $ui = $( pageSelector );
 		 	$( $ui ).data( "type",  type);
-	        $( $ui ).data( "projectid",  projectid);
+	        $( $ui ).data( "ownerid",  ownerid);
 	        if ( act === "new"){
 				action.cleaner( $( "#insMoney" ) );	
 			}
@@ -53,11 +53,12 @@ pgInsMoney = {
 			return true;
 		}
 	},
-	showInsMoneyPage: function ( urlObj, options, type, $ui ){
-	 	insMoneynav.load(type);
-	 	$ui.page();
+	showInsMoneyPage: function ( urlObj, options, type, ui ){
+	 	insMoneynav.load( type );
+	 	uiItemCost.load( ui );
+	 	ui.page();
 	    options.dataUrl = urlObj.href;
-	 	$.mobile.changePage( $ui, options );
+	 	$.mobile.changePage( ui, options );
 	},
 	showInsMoneyContent: function ( u, pageSelector ){
 		var $content = $( pageSelector );
