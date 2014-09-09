@@ -1,4 +1,4 @@
-uiUser = {
+uiUsers = {
 		id:"user",
 		fixLoad:false,
 		users:[],
@@ -10,7 +10,7 @@ uiUser = {
 				if (!helperMessage.showMessageErrorJSON ( data ))
 					var $l = $("[mz-data-list='user']"); 
 					$.each( $l , function(index, state) {						
-						uiUser.loadSelectUI( $l[index], data );
+						uiUsers.loadSelectUI( $l[index], data );
 					});
 	   	    		
 	   	 	});				
@@ -18,13 +18,13 @@ uiUser = {
 			$.each( $l , function(index, state) {
 				var $ui = $l[index];				
 				$( $ui ).bind( "change", function( event ) {
-					uiUser.validChange( this );
+					uiUsers.validChange( this );
 				});				
 				$( $ui ).on( "beforesaving", function( event, data ) {					
-					return uiUser.beforeSaving( this, data );
+					return uiUsers.beforeSaving( this, data );
 				});
 				$( $ui ).on( "cleaner", function( event ) {					
-					 uiUser.cleaner( this );
+					 uiUsers.cleaner( this );
 				});
 			});
 		},		
@@ -41,14 +41,14 @@ uiUser = {
 			var $page = $( ui ).closest( "[data-role='page']" );
 			var type = $( $page ).data( "type" );
 			var ownerid = $( $page ).data( "ownerid" );
-			uiUser.fixLoad = false;
+			uiUsers.fixLoad = false;
 		 	if (type === 'user'){
 		    	$( ui ).val( ownerid );
 		    	try{
 		    		$( ui ).selectmenu('disable');
 		    		$( ui ).selectmenu("refresh");
 		    	} catch( e ) { 
-		    		uiUser.fixLoad = true;
+		    		uiUsers.fixLoad = true;
 		    	}
 		 	}
 		 	else{		 		
@@ -56,7 +56,7 @@ uiUser = {
 		    		$( ui ).selectmenu("enable");
 		    		$( ui ).selectmenu("refresh");
 		    	} catch( e ) { 
-		    		uiUser.fixLoad = true;
+		    		uiUsers.fixLoad = true;
 		    	}
 		 	}
 		},
@@ -71,7 +71,7 @@ uiUser = {
 		},
 		validChange: function ( ui ) {			
 			if ( helpUI.isError( ui ) ){
-				return uiUser.valid( ui );
+				return uiUsers.valid( ui );
 			}
 		},
 		valid: function ( ui ) {			
@@ -79,13 +79,13 @@ uiUser = {
 		},
 		cleaner: function ( ui ) {
 			helpUI.cleaner ( ui );			
-			uiUser.refreshSelectUI( ui );
+			uiUsers.refreshSelectUI( ui );
 		},
 		beforeSaving: function ( ui,  data ){			
 			var para = $( ui ).attr( "mz-data-para" );
-			var valid = uiUser.valid( ui );
+			var valid = uiUsers.valid( ui );
 	    	if ( valid ){
-	    		var usr = uiUser.selectedItem( ui );
+	    		var usr = uiUsers.selectedItem( ui );
 		    	data[ para ] = usr[ "id" ];  
 		    }
 	    	return valid;

@@ -10,7 +10,7 @@ $(document).bind( "pagebeforechange", function( e, data ) {
 
 $(document).on("pagebeforecreate", "#homepage",function(){
 	menu.loadStartMenu("startmenu");
-	uiUser.load();
+	uiUsers.load();
 	uiYears.load();
 	uiDate.load();
 	uiMoney.load();

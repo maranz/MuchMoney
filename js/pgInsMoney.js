@@ -2,9 +2,9 @@ pgInsMoney = {
 	load: function (){
 		var $ui = "#insMoney";
 		$( $ui ).on("pageshow", function(){
-			if (uiUser.fixLoad){
-				uiUser.refreshSelectUI( $( "#selectUsersout" ) );
-				uiUser.refreshSelectUI( $( "#selectUsersin" ) );
+			if (uiUsers.fixLoad){
+				uiUsers.refreshSelectUI( $( "#selectUsersout" ) );
+				uiUsers.refreshSelectUI( $( "#selectUsersin" ) );
 			}
 			pgInsMoney.setFocus();	
 		});
