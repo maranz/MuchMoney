@@ -11,8 +11,8 @@ $(document).bind( "pagebeforechange", function( e, data ) {
 $(document).on("pagebeforecreate", "#homepage",function(){
 	menu.loadStartMenu("startmenu");
 	uiUser.load();
+	uiYears.load();
 	uiDate.load();
-	//uiItemCost.load();
 	uiMoney.load();
 	pgInsMoney.load();
 	action.load();

@@ -15,6 +15,7 @@
 		<script type="text/javascript" src="js/menu.js"></script>
 		<script type="text/javascript" src="js/loadIndex.js"></script>
 		<script type="text/javascript" src="js/uiUser.js"></script>
+		<script type="text/javascript" src="js/uiYears.js"></script>
 		<script type="text/javascript" src="js/uiDate.js"></script>
 		<script type="text/javascript" src="js/uiItemCost.js"></script>		
 		<script type="text/javascript" src="js/uiMoney.js"></script>
@@ -33,6 +34,7 @@
 			<div data-role="footer" data-position="fixed">
 				<h4>Credits: Luca Marani</h4>
 			</div><!-- /footer -->
+			<!--
 			<div data-role="panel" id="leftpanel" data-theme="b" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-b ui-panel-open">
     			<ul data-role="listview">
 				    <li data-role="list-divider">Nuova</li>
@@ -42,7 +44,7 @@
 				    <li><a href="#">Movimenti</a></li>
 				    <li><a href="#">Totali</a></li>				    				    
 				</ul>
-			</div><!-- /panel -->
+			</div>--><!-- /panel -->
 		</div><!-- /page -->
 
 		<div data-role="page" id="insMoney" data-position="fixed">
@@ -157,6 +159,26 @@
 			<div data-role="footer" data-position="fixed">
 				<h4>Credits: Luca Marani</h4>
 			</div><!-- /footer -->			
-		</div>
+		</div><!-- /insMoney -->
+		
+		<div data-role="page" id="visMoney" data-position="fixed">
+			<div data-role="header">				
+				<a href="index.html" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button" role="button">Back</a>				
+				<h1>Much Money</h1>								
+			</div><!-- /header -->
+			<div role="main" class="ui-content" data-role="content">
+						<label for="selectYears" class="select">Anno:</label>
+						<select id="selectYears"
+								class="selectYears" 
+								data-native-menu="false"
+								mz-data-list="years"
+								mz-data-para="years" 
+								mz-data-required="true">													
+						</select>							
+			</div><!-- /Content-->
+			<div data-role="footer" data-position="fixed">
+				<h4>Credits: Luca Marani</h4>
+			</div><!-- /footer -->			
+		</div><!-- /visMoney -->
 	</body>
 </html>
