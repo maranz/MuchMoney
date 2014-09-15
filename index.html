@@ -16,6 +16,7 @@
 		<script type="text/javascript" src="js/loadIndex.js"></script>
 		<script type="text/javascript" src="js/uiUsers.js"></script>
 		<script type="text/javascript" src="js/uiYears.js"></script>
+		<script type="text/javascript" src="js/uiProjects.js"></script>		
 		<script type="text/javascript" src="js/uiDate.js"></script>
 		<script type="text/javascript" src="js/uiItemCost.js"></script>		
 		<script type="text/javascript" src="js/uiMoney.js"></script>
@@ -166,15 +167,117 @@
 				<a href="index.html" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button" role="button">Back</a>				
 				<h1>Much Money</h1>								
 			</div><!-- /header -->
-			<div role="main" class="ui-content" data-role="content">
-						<label for="selectYears" class="select">Anno:</label>
+			<div role="main" class="ui-content" data-role="content">						
 						<select id="selectYears"
 								class="selectYears" 
 								data-native-menu="false"
 								mz-data-list="years"
-								mz-data-para="years" 
-								mz-data-required="true">													
-						</select>							
+								mz-data-para="years">												
+						</select>	
+												
+						<select id="selectProjects"
+								class="selectProjects" 
+								mz-data-list="projects"
+								mz-data-para="projects"
+								data-native-menu="false">
+						</select>	
+						
+				<div data-role="collapsible-set">
+					<div data-role="collapsible" data-iconpos="right" data-collapsed="false">
+						<h3>Totale</h3>
+						<ul data-role="listview" data-theme="a">
+					     <li style="min-height: 3.625em; padding-left: 6.25em; border-color: #ddd; background-color: rgba(235, 250, 255, .6);">					     	
+							<div style="float:left; width:40%;">
+						      	<img src='img/papa.png' style='position:absolute;left:0;top:0;max-height:5em;max-width:5em'  > 
+						      	<h3 class='ui-li-heading'>Luca</h3>						      		
+					      	</div>					      	
+					      	<div style="float:left; width:60%; text-align: right;" >
+					      		<p><strong>Entrate:</strong>&nbsp&euro;14.726,90 -</p> 
+					    		<p><strong>Spese:</strong>&nbsp&euro;18.438,60&nbsp</p> 
+					    	 	<p>=<strong>&nbsp&euro;10.167,38&nbsp</strong></p 
+							</div>							
+						  </li>
+						  
+					      <li style="min-height: 3.625em; padding-left: 6.25em; border-color: #ddd; background-color: rgba(255, 235, 255, .6);" >
+					      	<div style="float:left; width:40%;">
+						      	<img src='img/mamma.png' style='position:absolute;left:0;top:0;max-height:5em;max-width:5em'  > 
+						      	<h3 class='ui-li-heading'>Silvia</h3>						      		
+					      	</div>					      	
+					      	<div style="float:left; width:60%; text-align: right;" >
+					      		<p><strong>Entrate:</strong>&nbsp&euro;14.726,90 -</p> 
+					    		<p><strong>Spese:</strong>&nbsp&euro;18.438,60&nbsp</p> 
+					    	 	<p>=<strong>&nbsp&euro;10.167,38&nbsp</strong></p 
+							</div>									      			
+						  </li>		      
+					    </ul>					   
+					</div>
+					<div data-role="collapsible" data-iconpos="right" data-collapsed="false" >
+						<h3>Settembre</h3>
+						<ul data-role='listview' class='ui-listview' >												
+					     <li style="min-height: 3.625em; padding-left: 6.25em; padding-top: 0.3em; padding-bottom: 0.3em; border-color: #ddd; ">					     	
+							<div style="float:left; width:40%;">
+						      	<img src='img/papa.png' style='position:absolute;left:0;top:0;max-height:5em;max-width:5em'  > 
+						      	<h3 class='ui-li-heading'>Luca</h3>						      		
+					      	</div>					      	
+					      	<div style="float:left; width:60%; text-align: right;" >
+					      		<p><strong><span style="color:green">Entrate:</span></strong>&nbsp&euro;14.726,90 -</p> 
+					    		<p><strong><span style="color:red">Spese:</span></strong>&nbsp&euro;18.438,60&nbsp</p> 
+					    	 	<p>=<strong>&nbsp&euro;10.167,38&nbsp</strong></p 
+							</div>							
+						  </li>
+						 <li style=" border-top: 0; padding: 0em 1em 0em 1em;">						  						     	
+								<div style='width:100%; min-height: 0.3em; background-color:green;border-color: #ddd;border-width: 1px 1px 1px;border-style: solid; padding: 0;'>					     			
+					     		</div>		     		 
+					     		<div style='width:55%; min-height: 0.3em; background-color:red;border-color: #ddd;border-width: 1px 1px 1px;border-style: solid; padding: 0;'>
+					    		</div>						
+						  </li>	
+					       <li style="min-height: 3.625em; padding-left: 6.25em; padding-top: 0.3em; padding-bottom: 0.3em; border-color: #ddd; ">					     	
+							<div style="float:left; width:40%;">
+						      	<img src='img/mamma.png' style='position:absolute;left:0;top:0;max-height:5em;max-width:5em'  > 
+						      	<h3 class='ui-li-heading'>Silvia</h3>						      		
+					      	</div>					      	
+					      	<div style="float:left; width:60%; text-align: right;" >
+					      		<p><strong><span style="color:green">Entrate:</span></strong>&nbsp&euro;14.726,90 -</p> 
+					    		<p><strong><span style="color:red">Spese:</span></strong>&nbsp&euro;18.438,60&nbsp</p> 
+					    	 	<p>=<strong>&nbsp&euro;10.167,38&nbsp</strong></p 
+							</div>							
+						  </li>
+						      <li style=" border-top: 0; padding: 0em 1em 0em 1em;">						  						     	
+								<div style='width:100%; min-height: 0.3em; background-color:green;border-color: #ddd;border-width: 1px 1px 1px;border-style: solid; padding: 0;'>					     			
+					     		</div>		     		 
+					     		<div style='width:55%; min-height: 0.3em; background-color:red;border-color: #ddd;border-width: 1px 1px 1px;border-style: solid; padding: 0;'>
+					    		</div>						
+						  </li>	  
+					    </ul>					   
+					</div>
+					<div data-role="collapsible" data-iconpos="right" >
+						<h3>Agosto</h3>
+						<ul data-role="listview" data-theme="a">
+					     <li style="min-height: 3.625em; padding-left: 6.25em; border-color: #ddd; background-color: rgba(235, 250, 255, .6);">
+							<div style="float:left; width:40%;">
+						      	<img src='img/papa.png' style='position:absolute;left:0;top:0;max-height:5em;max-width:5em'  > 
+						      	<h3 class='ui-li-heading'>Luca</h3>						      		
+					      	</div>					      	
+					      	<div style="float:left; width:60%; text-align: right;" >
+					      		<p><strong>Entrate:</strong>&nbsp&euro;14.726,90 -</p> 
+					    		<p><strong>Spese:</strong>&nbsp&euro;18.438,60&nbsp</p> 
+					    	 	<p>=<strong>&nbsp&euro;10.167,38&nbsp</strong></p 
+							</div>							
+						  </li>
+					      <li style="min-height: 3.625em; padding-left: 6.25em; border-color: #ddd; background-color: rgba(255, 235, 255, .6);" >
+					      	<div style="float:left; width:40%;">
+						      	<img src='img/mamma.png' style='position:absolute;left:0;top:0;max-height:5em;max-width:5em'  > 
+						      	<h3 class='ui-li-heading'>Silvia</h3>						      		
+					      	</div>					      	
+					      	<div style="float:left; width:60%; text-align: right;" >
+					      		<p><strong>Entrate:</strong>&nbsp&euro;14.726,90 -</p> 
+					    		<p><strong>Spese:</strong>&nbsp&euro;18.438,60&nbsp</p> 
+					    	 	<p>=<strong>&nbsp&euro;10.167,38&nbsp</strong></p 
+							</div>									      			
+						  </li>		      
+					    </ul>					   
+					</div>
+				</div>
 			</div><!-- /Content-->
 			<div data-role="footer" data-position="fixed">
 				<h4>Credits: Luca Marani</h4>
