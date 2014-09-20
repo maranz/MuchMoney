@@ -22,15 +22,7 @@ uiMoney = {
 			var pos = $( input ).caret();				
 			var text = $( input ).val();
 			var mask = new maskMoneyItem(pos, text);
-			helperMaskEuro.RemovePoint(mask);
-			mask.setPointCount();			
-			helperMaskEuro.removeSymbolEuro( mask );
-			helperMaskEuro.replacePointTo( mask );			
-			helperMaskEuro.removeCharNotValid( mask );
-			helperMaskEuro.Overflow( mask );
-			helperMaskEuro.removeComma( mask );
-			helperMaskEuro.addSymbolEuro( mask );			
-			helperMaskEuro.formatEuro( mask );			
+			helperMaskEuro.maskText( mask );			
 			if ($( input ).val() != mask.text){
 				$( input ).val( mask.text );
 				mask.refreshPos();
@@ -80,6 +72,21 @@ maskMoneyItem = function (pos, text){
 };
 
 helperMaskEuro = {	
+	maskNumText: function( mask ){
+		mask.text = mask.text.replace( ".", ",");
+		helperMaskEuro.maskText(mask);
+	},
+	maskText: function( mask ){			
+		helperMaskEuro.RemovePoint(mask);
+		mask.setPointCount();			
+		helperMaskEuro.removeSymbolEuro( mask );
+		helperMaskEuro.replacePointTo( mask );			
+		helperMaskEuro.removeCharNotValid( mask );
+		helperMaskEuro.Overflow( mask );
+		helperMaskEuro.removeComma( mask );
+		helperMaskEuro.addSymbolEuro( mask );			
+		helperMaskEuro.formatEuro( mask );	
+	},
 	getFormatText: function ( text ){
 		return text.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");		
 	},
@@ -111,8 +118,8 @@ helperMaskEuro = {
 		var pattern = /\.+/g;
 		var points = text.match(pattern);
 		if (points != null){
-			if (isComma != null){
-				text = text.replace(/\.$/g, ",");				
+			if (isComma != null){				
+				text = text.replace(/\.$/g, ","); 
 			}
 			mask.text = text.replace(pattern, "");
 		}

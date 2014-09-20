@@ -1,7 +1,7 @@
 menu = {		 
 	 loadStartMenu: function ( idContainer ){
 		 var data = {
-			 "action":"startmenu"    			
+			 "action":"startmenu"
     	 };
 		 helpAjax.call(data, function ( data ) {
 	   	    	if (!helperMessage.showMessageErrorJSON ( data ))

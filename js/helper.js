@@ -94,7 +94,20 @@ helperString = {
 			else
 				return false;
 		}	
-	}	
+	},
+	pad: function (str, max, p) {
+	  str = str.toString();
+	  return str.length < max ? helperString.pad(p + str, max, p) : str;
+	},
+	padSpace: function(text, max) {		
+		var d = max - text.length;
+		var t = "";
+		for ( var i = 0, l = d; i < l; i++ ) {
+			t += "&nbsp";
+		}
+		t += text;
+		return t;
+	}
 };
 
 helpAjax = {

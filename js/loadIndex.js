@@ -16,6 +16,7 @@ $(document).on("pagebeforecreate", "#homepage",function(){
 	uiDate.load();
 	uiMoney.load();
 	pgInsMoney.load();
+	pgVisMoney.load();
 	action.load();
 }); 
 

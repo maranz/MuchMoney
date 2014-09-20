@@ -7,12 +7,12 @@ uiProjects = {
 				 "action":"projects"    			
 	    	};			
 			helpAjax.call(data, function ( data ) {
-				if (!helperMessage.showMessageErrorJSON ( data ))
+				if (!helperMessage.showMessageErrorJSON ( data )){
 					var $l = $("[mz-data-list='projects']"); 
 					$.each( $l , function(index, state) {						
 						uiProjects.loadSelectUI( $l[index], data );
 					});
-	   	    		
+				}	
 	   	 	});				
 			var $l = $("[mz-data-list='projects']"); 
 			$.each( $l , function(index, state) {

@@ -6,3 +6,69 @@
    -moz-box-shadow: 0 0 12px #DF0101;
 }
 
+ul[mz-data-list="vismoney"] > li.ui-money-content { 
+	min-height: 3.625em	!important;
+	padding-left: 6.25em !important;
+	padding-top: 0.3em !important;
+	padding-bottom: 0.3em !important; 
+	border-color: #ddd !important;
+}
+
+ul[mz-data-list="vismoney"] > li.ui-money-gra { 
+	border-top: 0 !important; 
+	padding: 0em 1em 0em 1em !important;
+}
+
+ul[mz-data-list="vismoney"] > li.ui-money-content div.ui-money-content-left{
+	float:left; 
+	width:40%;
+}
+
+ul[mz-data-list="vismoney"] > li.ui-money-content div.ui-money-content-right{
+	float:left;
+	width:60%; 
+	text-align: right;
+}
+
+ul[mz-data-list="vismoney"] > li > div img.ui-li-thumb
+{
+	position:absolute;
+	left:0;
+	top:0;
+	max-height:5em;
+	max-width:5em;
+}
+
+ul[mz-data-list="vismoney"] > li.ui-money-gra div{
+	min-height: 0.3em;
+	border-color: #ddd;
+	border-width: 1px 1px 1px;
+	border-style: solid; 
+	padding: 0;
+}
+
+.ui-money-num-a{
+	max-width:5em;
+}
+
+.ui-div-money-out{
+	background-color:red;
+}
+
+.ui-div-money-in{
+	background-color:green;
+}
+
+.ui-span-money-out{
+	color:red;
+	font-weight: bold;
+}
+
+.ui-span-money-in{
+	color:green;
+	font-weight: bold;
+}
+
+.ui-span-money-result{
+	font-weight: bold;
+}

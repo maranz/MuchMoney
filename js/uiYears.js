@@ -7,12 +7,12 @@ uiYears = {
 				 "action":"years"    			
 	    	};			
 			helpAjax.call(data, function ( data ) {
-				if (!helperMessage.showMessageErrorJSON ( data ))
+				if (!helperMessage.showMessageErrorJSON ( data )){
 					var $l = $("[mz-data-list='years']"); 
 					$.each( $l , function(index, state) {						
 						uiYears.loadSelectUI( $l[index], data );
-					});
-	   	    		
+					});	
+				}
 	   	 	});				
 			var $l = $("[mz-data-list='years']"); 
 			$.each( $l , function(index, state) {

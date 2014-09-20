@@ -7,12 +7,12 @@ uiUsers = {
 				 "action":"users"    			
 	    	};			
 			helpAjax.call(data, function ( data ) {
-				if (!helperMessage.showMessageErrorJSON ( data ))
+				if (!helperMessage.showMessageErrorJSON ( data )){
 					var $l = $("[mz-data-list='user']"); 
 					$.each( $l , function(index, state) {						
 						uiUsers.loadSelectUI( $l[index], data );
 					});
-	   	    		
+				}	
 	   	 	});				
 			var $l = $("[mz-data-list='user']"); 
 			$.each( $l , function(index, state) {
