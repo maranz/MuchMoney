@@ -39,7 +39,7 @@ uiYears = {
 		refreshSelectUI: function ( ui ){			
 			var $page = $( ui ).closest( "[data-role='page']" );
 			var type = $( $page ).data( "type" );
-			var ownerid = $( $page ).data( "ownerid" );
+			var ownerid = $( $page ).data( "year" );
 			uiYears.fixLoad = false;
 		 	if (type === 'user'){
 		    	$( ui ).val( ownerid );
@@ -59,14 +59,8 @@ uiYears = {
 		    	}
 		 	}
 		},
-		selectedItem: function( ui ){
-			var item = [];
-			var val = $( ui ).val();
-			if (val != "err"){
-				item["id"] = val;
-				item["name"] = $( ui ).children(":selected").text();
-			}
-			return item;
+		selectedItem: function( ui ){			
+			return $( ui ).val();
 		},
 		validChange: function ( ui ) {			
 			if ( helpUI.isError( ui ) ){
@@ -85,7 +79,7 @@ uiYears = {
 			var valid = uiYears.valid( ui );
 	    	if ( valid ){
 	    		var usr = uiYears.selectedItem( ui );
-		    	data[ para ] = usr[ "id" ];  
+		    	data[ para ] = usr[ "year" ];  
 		    }
 	    	return valid;
 		}

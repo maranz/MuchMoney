@@ -49,6 +49,9 @@ helperDate = {
         var mm = ("0" + (now.getMonth() + 1)).slice(-2);        
         var yyyy = now.getFullYear();
         return yyyy + '-' + mm + '-' + dd;
+	},
+	getYear: function (){
+		return ( new Date ).getFullYear();
 	}
 };
 
@@ -131,6 +134,8 @@ helpAjax = {
 	   	      crossDomain: true,
 	   	      jsonp:'callback',
 	   	      timeout:10000,
+	   	      beforeSend: function() { $.mobile.loading('show'); },
+	   	      complete: function() { $.mobile.loading('hide'); },
 	   	      success: success,
 	       	  error: function ( xhr, status ) {
 	       		  helperMessage.showAJAXException(  xhr, status );

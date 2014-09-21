@@ -1,8 +1,21 @@
 pgVisMoney = {
-	load: function (){
-		var data = {
+	load: function (  ){		
+		year = helperDate.getYear(); 
+		pgVisMoney.loadData( year );
+		var page = $( "#visMoney" );
+		var li = $( page ).find ( "[mz-data-list='years']" );
+		if (li.length > 0){
+			var uiYear = li[0];
+			$( uiYear ).bind( "change", function( event ) {
+				var year = uiYears.selectedItem( this );
+				pgVisMoney.changeYear( year );
+			});
+		}
+	},	
+	loadData: function ( year ){
+			var data = {
 				 "action":"vismoney",
-				 "year":"2013",
+				 "year":"" + year + "",
 				 "projectid":"all"
 	    	};			
 			helpAjax.call(data, function ( data ) {
@@ -13,7 +26,7 @@ pgVisMoney = {
 					});			
 				}		
 	   	 	});
-	},	
+	},
 	loadUI: function (u, data){
 		var html = "";
 		var titlePrev = null;
@@ -75,6 +88,7 @@ pgVisMoney = {
 			}
 		}
 		$( u ).html( html );
+		$( u ).trigger("create");
 	},	
 	formatMoney: function ( text ){		
 		var mask = new maskMoneyItem( text.length, text );
@@ -92,5 +106,8 @@ pgVisMoney = {
 		var html = '</ul>';
 		html += '</div>';
 		return html;
+	},
+	changeYear: function ( year ){
+		pgVisMoney.loadData( year );		
 	}
 };
