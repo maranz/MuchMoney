@@ -22,6 +22,7 @@
 		<script type="text/javascript" src="js/uiMoney.js"></script>
 		<script type="text/javascript" src="js/pgInsMoney.js"></script>		
 		<script type="text/javascript" src="js/pgVisMoney.js"></script>
+		<script type="text/javascript" src="js/pgMovMoney.js"></script>
  		<script type="text/javascript" src="js/action.js"></script>
 	</head>
 	<body>		
@@ -168,15 +169,16 @@
 				<a href="index.html" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button" role="button">Back</a>				
 				<h1>Much Money</h1>								
 			</div><!-- /header -->
-			<div role="main" class="ui-content" data-role="content">						
-						<select id="selectYears"
+			<div role="main" class="ui-content" data-role="content">
+										
+						<select id="selectVisYears"
 								class="selectYears" 
 								data-native-menu="false"
 								mz-data-list="years"
 								mz-data-para="years">												
 						</select>	
 												
-						<select id="selectProjects"
+						<select id="selectVisProjects"
 								class="selectProjects" 
 								mz-data-list="projects"
 								mz-data-para="projects"
@@ -186,6 +188,45 @@
 				<div data-role="collapsible-set" mz-data-view="vismoney">
 					
 				</div>
+			</div><!-- /Content-->
+			<div data-role="footer" data-position="fixed">
+				<h4>Credits: Luca Marani</h4>
+			</div><!-- /footer -->			
+		</div><!-- /visMoney -->
+		
+		<div data-role="page" id="movMoney" data-position="fixed">
+			<div data-role="header">				
+				<a href="index.html" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button" role="button">Back</a>				
+				<h1>Much Money</h1>								
+			</div><!-- /header -->
+			<div role="main" class="ui-content" data-role="content">					
+					
+					<select id="selectMovYears"
+								class="selectYears" 
+								data-native-menu="false"
+								mz-data-list="years"
+								mz-data-para="years">												
+						</select>	
+							
+						<select id="selectMovUsersout"
+								class="selectUsers" 
+								data-native-menu="false"
+								mz-data-list="user"
+								mz-data-para="useridowner" 
+								mz-data-required="true">
+							<option value="null">Famiglia</option>						
+						</select>		
+												
+						<select id="selectMovProjects"
+								class="selectProjects" 
+								mz-data-list="projects"
+								mz-data-para="projects"
+								data-native-menu="false">
+						</select>	
+						
+					<div data-role="collapsible-set" mz-data-view="movmoney">
+					
+					</div>
 			</div><!-- /Content-->
 			<div data-role="footer" data-position="fixed">
 				<h4>Credits: Luca Marani</h4>

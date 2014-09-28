@@ -7,7 +7,7 @@
 }
 
 ul[mz-data-list="vismoney"] > li.ui-money-content { 
-	min-height: 3.625em	!important;
+	min-height: 4.5em	!important;
 	padding-left: 6.25em !important;
 	padding-top: 0.3em !important;
 	padding-bottom: 0.3em !important; 
@@ -71,4 +71,28 @@ ul[mz-data-list="vismoney"] > li.ui-money-gra div{
 
 .ui-span-money-result{
 	font-weight: bold;
+}
+
+.ui-icon-moneyout:after {
+	background-image: url("img/arrow-circle-left-red.png");
+	background-size: 18px 18px;
+	background-color: white;
+}
+
+.ui-icon-moneyin:after {
+	background-image: url("img/arrow-circle-left-red.png");  
+	background-size: 18px 18px;
+	background-color: white;
+}
+
+.ui-li-speedread {	
+	background:rgba(242,242,242,0.6) !important;	
+}
+
+ul[mz-data-list="movmoney"] > li.ui-money-content { 
+	min-height: 4.5em	!important;
+	padding-left: 6.25em !important;
+	padding-top: 0.3em !important;
+	padding-bottom: 0em !important; 
+	border-color: #ddd !important;
 }
