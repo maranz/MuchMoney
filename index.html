@@ -29,7 +29,7 @@
 		<div data-role="page" id="homepage">			
 			<div data-role="header" data-position="fixed">
 				<h1>Much Money</h1>
-				<a href="#rightpanel" data-icon="bars" data-iconpos="notext" class="ui-btn-left">Menu</a>        		
+				<a href="#leftpanel" data-icon="bars" data-iconpos="notext" class="ui-btn-left">Menu</a>        		
 			</div><!-- /header -->
 			<div id="startmenu" data-role="content">
 				<!-- Load dynamic by usersGroups.loadList -->				
@@ -53,9 +53,14 @@
 		<div data-role="page" id="insMoney" data-position="fixed">
 			<div data-role="header">
 				<!--<a href="index.html" data-rel="back">back</a>-->
-				<!--<a href="#leftpanelm" data-icon="bars" data-iconpos="notext">Menu</a>-->    
-				<a href="index.html" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button" role="button">Back</a>				
-				<h1>Much Money</h1>				
+				<!--<a href="#leftpanelm" data-icon="bars" data-iconpos="notext">Menu</a>-->
+				<!--<a href="#leftpanel" data-icon="bars" data-iconpos="notext" class="ui-btn-left">Menu</a>-->    
+				<!--<a href="index.html" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button" role="button">Back</a>-->				
+				<h1>Much Money</h1>
+				<div class="ui-btn-left">
+			        <a href="#leftpanel" class="headerButton" data-icon="bars" data-iconpos="notext"  data-role="button">leftpanel</a>
+			        <a href="index.html" class="headerButton" data-rel="back" data-icon="back" data-iconpos="notext" data-role="button">back</a>
+			    </div>					
 				<div id="insMoneynav" data-role="navbar">
 			        <ul>
 			            <li><a href="#insMoneyout?action=new" class="ui-btn-active ui-state-persist">Spese</a></li>
@@ -175,9 +180,12 @@
 		</div><!-- /insMoney -->
 		
 		<div data-role="page" id="visMoney" data-position="fixed">
-			<div data-role="header">				
-				<a href="index.html" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button" role="button">Back</a>				
-				<h1>Much Money</h1>								
+			<div data-role="header">
+				<h1>Much Money</h1>
+				 <div class="ui-btn-left">
+			        <a href="#leftpanel" class="headerButton" data-icon="bars" data-iconpos="notext"  data-role="button">leftpanel</a>
+			        <a href="index.html" class="headerButton" data-rel="back" data-icon="back" data-iconpos="notext" data-role="button">back</a>
+			    </div>
 			</div><!-- /header -->
 			<div role="main" class="ui-content" data-role="content">
 										
@@ -205,8 +213,11 @@
 		</div><!-- /visMoney -->
 		
 		<div data-role="page" id="movMoney" data-position="fixed">
-			<div data-role="header">				
-				<a href="index.html" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all " data-role="button" role="button">Back</a>
+			<div data-role="header">
+				 <div class="ui-btn-left">
+			        <a href="#leftpanel" class="headerButton" data-icon="bars" data-iconpos="notext"  data-role="button">leftpanel</a>
+			        <a href="index.html" class="headerButton" data-rel="back" data-icon="back" data-iconpos="notext" data-role="button">back</a>
+			    </div>				
 				<a href="#insMoney?action=new&type=full" data-transition="slideup" class="ui-btn-right ui-btn ui-icon-plus ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button" role="button">Add</a>				
 				<h1>Much Money</h1>								
 			</div><!-- /header -->

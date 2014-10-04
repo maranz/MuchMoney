@@ -20,11 +20,11 @@ pgVisMoney = {
 			});
 		}
 	},	
-	loadData: function ( year, projectid ){
+	loadData: function ( year, projectid ){				
 			var data = {
 				 "action":"vismoney",
 				 "year":"" + year + "",
-				 "projectid":"" + projectid + ""
+				 "projectid":"" + projectid + ""				 
 	    	};			
 			helpAjax.call(data, function ( data ) {
 				var $l = $("[mz-data-view='vismoney']");

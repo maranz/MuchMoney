@@ -1,23 +1,24 @@
 uiItemCost = {
 		id:"itemcost",
+		selector: "[mz-data-list='itemcost']",
 		itemsU: [],
 		itemsE: [],		
 		isCloseSuggestion: false,
 		load: function( page ){
-			var $l = $( page ).find( "[mz-data-list='itemcost']" );
+			var $l = $( page ).find( uiItemCost.selector );
 			$.each( $l , function(index, state) {
 				var $ui = $l[index]; 
 				var id = $ui.id;
-				var ownerid =  $( page ).data( "ownerid" );
+				var projectid =  $( page ).data( "projectid" );
 				var type =  $( page ).data( "type" );
 				var ctype = $( $ui ).attr( "mz-data-type" );
 				var data = {};
 				data[ "action" ] = "itemcosts";
 				data[ "ctype" ] = ctype;
 				if ( type == "user" ) {
-					data[ "useridowner" ] = ownerid;
+					data[ "ownerid" ] = projectid;
 				}else if ( type == "project" ){
-					data[ "projectid" ] = ownerid;
+					data[ "projectid" ] = projectid;
 				}				
 				helpAjax.call( data, function ( data, status ) {
 					if (!helperMessage.showMessageErrorJSON ( data )){
@@ -41,7 +42,7 @@ uiItemCost = {
 						$( "#sugg" + id ).on("tap", "a", function(){							
 							$( $ui ).val( $( this ).text() );	
 							uiItemCost.CloseSuggestion( this );				
-						});
+						});						
 						$( $ui ).bind("blur", function() {
 							uiItemCost.validBlur( this );
 							uiItemCost.CloseSuggestion( this );

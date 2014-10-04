@@ -34,7 +34,7 @@ pgMovMoney = {
 			if ( projectid == null ||  projectid  == 'all' ) {
 				projectid  = '';
 			}
-			if ( ownerid == null || ownerid == 'null' ) {
+			if ( ownerid == null || ownerid == "" || ownerid == 'null' ) {
 				ownerid = '';
 			}
 			var data = {

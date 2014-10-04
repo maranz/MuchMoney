@@ -96,3 +96,7 @@ ul[mz-data-list="movmoney"] > li.ui-money-content {
 	padding-bottom: 0em !important; 
 	border-color: #ddd !important;
 }
+
+div[data-role="footer"] > a {
+	margin:0 !important;
+}
