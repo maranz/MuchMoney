@@ -1,14 +1,23 @@
 pgInsMoney = {
+	selector:"#insMoney",
 	load: function (){
-		var $ui = "#insMoney";
-		$( $ui ).on("pageshow", function(){
+		var page = $(  pgInsMoney.selector );
+		$( page ).on("pageshow", function(){
 			if (uiUsers.fixLoad){
 				uiUsers.refreshSelectUI( $( "#selectUsersout" ) );
 				uiUsers.refreshSelectUI( $( "#selectUsersin" ) );
 			}
+			if (uiProjects.fixHiden){
+				var ui = $( page ).find( uiProjects.selector );
+				uiProjects.show( $( ui ), false );
+			}
+			if (uiProjects.fixShow){
+				var ui = $( page ).find( uiProjects.selector );
+				uiProjects.show( ui, true );
+			}
 			pgInsMoney.setFocus();	
 		});
-		$( $ui ).on("aftersavepage", function( event, data ){
+		$( page ).on("aftersavepage", function( event, data ){
 			pgInsMoney.afterSavePage( data );
 		});
 	},
@@ -31,11 +40,24 @@ pgInsMoney = {
 		 	var type = hu.item( "type" );
 		 	var name =  hu.item( "name" );
 		 	var pageSelector = hu.item( "selector" );
-		 	var ownerid = hu.item( "ownerid" );
+		 	var projectid = hu.item( "projectid" );
 		 	var act = hu.item( "action" );
-		 	var $ui = $( pageSelector );
-		 	$( $ui ).data( "type",  type);
-	        $( $ui ).data( "ownerid",  ownerid);
+		 	var page = $( pageSelector );
+		 	if (type == undefined){
+		 		$( page ).data( "type",  null);
+		 	}else{
+		 		$( page ).data( "type",  type);	
+		 	}
+		 	if ( type == "user" ){
+		 		$( page ).data( "ownerid",  projectid);
+		 		$( page ).data( "projectid",  null);
+		 	}else if ( type == "project" ){
+		 		$( page ).data( "projectid",  projectid);
+		 		$( page ).data( "ownerid",  null);
+		 	}else {
+		 		$( page ).data( "projectid",  null);
+		 		$( page ).data( "ownerid",  null);
+		 	}
 	        if ( act === "new"){
 				action.cleaner( $( "#insMoney" ) );	
 			}
@@ -43,23 +65,24 @@ pgInsMoney = {
 			var isinsMoneyin = ( u.hash.search(/^#insMoneyin/) !== -1 );
 			if (data.options.fromPage === null 
 			 || data.options.fromPage === undefined){
-				pgInsMoney.showInsMoneyPage( u, data.options, type,  $ui, "new" );
+				pgInsMoney.showInsMoneyPage( u, data.options, type,  page, "new" );
 			}else if ( isinsMoneyout || isinsMoneyin ) {
 				pgInsMoney.showInsMoneyContent( u, pageSelector );
 			}
 			else {
-				pgInsMoney.showInsMoneyPage( u, data.options, type,  $ui, act );
+				pgInsMoney.showInsMoneyPage( u, data.options, type,  page, act );
 			}
 			return true;
 		}
 	},
-	showInsMoneyPage: function ( urlObj, options, type, ui ){
+	showInsMoneyPage: function ( urlObj, options, type, page ){
 	 	insMoneynav.load( type );
-	 	uiItemCost.load( ui );
-	 	ui.page();
+	 	uiItemCost.load( page );
+	 	pgInsMoney.showUIProjects( page, type );
+	 	page.page();
 	    options.dataUrl = urlObj.href;
-	 	$.mobile.changePage( ui, options );
-	},
+	 	$.mobile.changePage( page, options );
+	},	
 	showInsMoneyContent: function ( u, pageSelector ){
 		var $content = $( pageSelector );
 	    $content.siblings().hide();
@@ -72,6 +95,14 @@ pgInsMoney = {
 		else{
 			$('#dreg').focus().tap();
 		}
+	},
+	showUIProjects: function ( page, type ){
+		var ui = $( page ).find( uiProjects.selector );
+		if ( type === "full" || type === null || type === undefined ){
+			uiProjects.show( ui, true );
+		}else{
+			uiProjects.show( ui, false );
+		}
 	}
 };
 
@@ -83,7 +114,7 @@ insMoneynav = {
 		$('#insMoneynav').show();
 	},
 	load: function (type){
-		if (type === "user") {
+		if (type === "user" || type === "full") {
 			insMoneynav.show();
 		}else{
 			insMoneynav.hide();			

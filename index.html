@@ -29,7 +29,7 @@
 		<div data-role="page" id="homepage">			
 			<div data-role="header" data-position="fixed">
 				<h1>Much Money</h1>
-				<a href="#leftpanel" data-icon="bars" data-iconpos="notext">Menu</a>        		
+				<a href="#rightpanel" data-icon="bars" data-iconpos="notext" class="ui-btn-left">Menu</a>        		
 			</div><!-- /header -->
 			<div id="startmenu" data-role="content">
 				<!-- Load dynamic by usersGroups.loadList -->				
@@ -70,11 +70,21 @@
 								class="selectUsers" 
 								data-native-menu="false"
 								mz-data-list="user"
-								mz-data-para="useridowner" 
+								mz-data-para="ownerid" 
 								mz-data-required="true">
-							<option data-placeholder="true" value="null">Seleziona chi ha pagato...</option>						
+							<option data-placeholder="true" value="">Seleziona chi ha pagato...</option>						
 						</select>		
-										
+						
+						<label for="selectInsProjects" class="select">Progetto:</label>
+						<select id="selectInsProjects"
+								class="selectProjects" 
+								mz-data-list="projects"
+								mz-data-para="projectid"
+								data-native-menu="false"
+								mz-data-required="true">
+							<option data-placeholder="true" value="">Seleziona per cosa gli hai spesi...</option>
+						</select>	
+									
 		    			<label for="dregout">Data di registrazione:</label>
 		     			<input id="dregout"
 		     				   type="date" 
@@ -118,9 +128,9 @@
 								class="selectUsers" 
 								data-native-menu="false"
 								mz-data-list="user"
-								mz-data-para="useridowner"
+								mz-data-para="ownerid"
 								mz-data-required="true">
-							<option data-placeholder="true" value="null">Seleziona chi ha guadagnato...</option>						
+							<option data-placeholder="true" value="">Seleziona chi ha guadagnato...</option>						
 						</select>
 						
 						<label for="dregin">Data di registrazione:</label>
@@ -196,7 +206,8 @@
 		
 		<div data-role="page" id="movMoney" data-position="fixed">
 			<div data-role="header">				
-				<a href="index.html" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button" role="button">Back</a>				
+				<a href="index.html" data-rel="back" class="ui-btn-left ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all " data-role="button" role="button">Back</a>
+				<a href="#insMoney?action=new&type=full" data-transition="slideup" class="ui-btn-right ui-btn ui-icon-plus ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button" role="button">Add</a>				
 				<h1>Much Money</h1>								
 			</div><!-- /header -->
 			<div role="main" class="ui-content" data-role="content">					
@@ -212,24 +223,25 @@
 								class="selectUsers" 
 								data-native-menu="false"
 								mz-data-list="user"
-								mz-data-para="useridowner" 
+								mz-data-para="ownerid" 
 								mz-data-required="true">
-							<option value="null">Famiglia</option>						
+							<option value="">Famiglia</option>						
 						</select>		
 												
 						<select id="selectMovProjects"
 								class="selectProjects" 
 								mz-data-list="projects"
-								mz-data-para="projects"
+								mz-data-para="projects1"
 								data-native-menu="false">
+                             <option value="all">Riepilogo</option>
 						</select>	
 						
 					<div data-role="collapsible-set" mz-data-view="movmoney">
 					
 					</div>
 			</div><!-- /Content-->
-			<div data-role="footer" data-position="fixed">
-				<h4>Credits: Luca Marani</h4>
+			<div data-role="footer" data-position="fixed" data-id="footer">
+    			 <h4>Credits: Luca Marani</h4>
 			</div><!-- /footer -->			
 		</div><!-- /visMoney -->
 	</body>

@@ -1,6 +1,9 @@
 uiProjects = {
 		id:"projects",
+		selector:"[mz-data-list='projects']",
 		fixLoad:false,
+		fixHiden:false,
+		fixShow:false,
 		Projects:[],
 		load: function(){
 			var data = {
@@ -8,13 +11,13 @@ uiProjects = {
 	    	};			
 			helpAjax.call(data, function ( data ) {
 				if (!helperMessage.showMessageErrorJSON ( data )){
-					var $l = $("[mz-data-list='projects']"); 
+					var $l = $( uiProjects.selector ); 
 					$.each( $l , function(index, state) {						
 						uiProjects.loadSelectUI( $l[index], data );
 					});
 				}	
 	   	 	});				
-			var $l = $("[mz-data-list='projects']"); 
+			var $l = $( uiProjects.selector ); 
 			$.each( $l , function(index, state) {
 				var $ui = $l[index];				
 				$( $ui ).bind( "change", function( event ) {
@@ -89,5 +92,33 @@ uiProjects = {
 		    	data[ para ] = usr[ "id" ];  
 		    }
 	    	return valid;
+		},		
+		show: function ( ui, isShow ){			
+			uiProjects.fixHiden = false;
+			uiProjects.fixShow = false;
+			var l = "[for='" + $( ui ).attr ( "id" ) + "']";
+			if ( isShow ){
+				try{
+					if ( l.length > 0 ) {
+						$( l ).show();
+					}					
+					$( ui ).closest('.ui-select').show();	
+					$( ui ).selectmenu('refresh');
+				} catch( e ) {										
+					uiProjects.fixShow = true;
+				}				
+			}
+			else{
+				try{
+					if ( l.length > 0 ) {
+						$( l ).hide();
+					}					
+					$( ui ).closest('.ui-select').hide();	
+					$( ui ).selectmenu('refresh');
+				} catch( e ) {						
+					uiProjects.fixHiden = true;
+		    	}
+			}
 		}
 };
+

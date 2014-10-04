@@ -27,21 +27,18 @@ helperDate = {
 	overFlow : function ( val ){
 		var c = val.replace ( /-/g , "");
 		var n = helperDate.getDateNowToString();
-		return ( c > n );
+		return ( parseInt( c ) > parseInt( n ) );
 	},
 	getDateNowToString: function () {
 		var n = new Date();
-		var m = (n.getMonth() + 1); 
-		if ( m.length = 1 ){
-			return "".concat( n.getFullYear()
-					 , "0"
-					 , m
-					 , n.getDate());
-		}else{
-			return "".concat( n.getFullYear()					 
-					 , m
-					 , n.getDate());
-		}
+		var d = n.getDate()
+		d = ( d.toString().length == 1 ? "0" + d : d);
+		var m = (n.getMonth() + 1);
+		m = ( m.toString().length == 1 ? "0" + m : m);
+		return "".concat( n.getFullYear()					 
+				 , m
+				 , d );
+		
 	},
 	getNowToString: function () {
 		var now = new Date();   
@@ -176,7 +173,7 @@ helpUI = {
 	},
 	isVoid: function ( ui ) {
 		var v = $( ui ).val();
-		return v == null || $.trim(v) == '' || $.trim(v) == 'null';
+		return v == null || $.trim(v) == "" || $.trim(v) == "null";
 	},
 	isError: function ( ui ){
 		return $( ui ).closest('div').hasClass( "ui-error" );
